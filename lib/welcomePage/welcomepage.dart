@@ -36,15 +36,15 @@ class welcomepage extends StatelessWidget {
                   width: 300,
                   image: AssetImage('assets/images/logo(final).png'),
                 ),
-                SizedBox(height: 20), // Add some spacing between the logo and the button
+                SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    // Add your onPressed code here!
+                    Navigator.pushNamed(context, 'login');
                   },
                   child: Text("Let's Go"),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15), // Button padding
-                    textStyle: TextStyle(fontSize: 16), // Button text style
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    textStyle: TextStyle(fontSize: 16),
                   ),
                 ),
               ],
