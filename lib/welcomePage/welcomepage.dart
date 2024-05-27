@@ -26,8 +26,7 @@ class welcomepage extends StatelessWidget {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.center,
+          Align( alignment: Alignment.center,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
