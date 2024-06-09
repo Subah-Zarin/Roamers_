@@ -7,19 +7,20 @@ class welcomepage extends StatelessWidget {
       body: Stack(
         children: [
           Image(
+            
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
-            image: AssetImage('assets/images/welcomePage.jpg'),
+            image: AssetImage('assets/images/OIP.png'),
           ),
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
                   Colors.black,
-                  Colors.black.withOpacity(0.15),
-                  Colors.black.withOpacity(0.15),
-                  Colors.black.withOpacity(0.15),
+                  Colors.black.withOpacity(0.55),
+                  Colors.black.withOpacity(0.55),
+                  Colors.black.withOpacity(0.400),
                 ],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
@@ -33,7 +34,7 @@ class welcomepage extends StatelessWidget {
                 Image(
                   height: 300,
                   width: 300,
-                  image: AssetImage('assets/images/logo(final).png'),
+                  image: AssetImage('assets/images/logo1.png'),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(

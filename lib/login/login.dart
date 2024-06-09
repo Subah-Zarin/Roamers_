@@ -13,7 +13,7 @@ class login extends StatelessWidget
               fit: BoxFit.cover,
               height: double.infinity,
               width: double.infinity,
-              image: AssetImage('assets/images/tea_garden.jpg')),
+              image: AssetImage('assets/images/bg2.jpg')),
           Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
