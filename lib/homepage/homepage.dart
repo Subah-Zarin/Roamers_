@@ -1,20 +1,98 @@
+// ...
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class homepage extends StatelessWidget{
-
+class homepage extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body:  Container(
-          width: double.infinity,
-          height: double.infinity,
-          color: Colors.teal,
-
-        ),
+    return Scaffold(
+      body: Row(
+        children: [
+          SafeArea(
+            child: NavigationRail(
+              extended: false,
+              destinations: [
+                NavigationRailDestination(
+                  icon: Icon(Icons.home),
+                  label: Text('Home'),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.favorite),
+                  label: Text('Favorites'),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.account_circle),
+                  label: Text('profile'),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.account_balance_wallet),
+                  label: Text('budget'),
+                ),
+              ],
+              selectedIndex: 0,
+              onDestinationSelected: (value) {
+                print('selected: $value');
+              },
+            ),
+          ),
+           // Expanded(
+           //   child: Container(
+           //     color: Theme.of(context).colorScheme.primaryContainer,
+           //     child: GeneratorPage(),
+           // ),
+           // ),
+        ],
       ),
-
     );
   }
-
 }
+
+
+
+
+// class GeneratorPage extends StatelessWidget {
+//    @override
+//    Widget build(BuildContext context) {
+//      var appState = context.watch<MyAppState>();
+//      var pair = appState.current;
+//
+//      IconData icon;
+//     if (appState.favorites.contains(pair)) {
+//       icon = Icons.favorite;
+//     } else {
+//       icon = Icons.favorite_border;
+//     }
+//
+//     return Center(
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           BigCard(pair: pair),
+//           SizedBox(height: 10),
+//           Row(
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               ElevatedButton.icon(
+//                 onPressed: () {
+//                   appState.toggleFavorite();
+//                 },
+//                 icon: Icon(icon),
+//                 label: Text('Like'),
+//               ),
+//               SizedBox(width: 10),
+//               ElevatedButton(
+//                 onPressed: () {
+//                   appState.getNext();
+//                 },
+//                 child: Text('Next'),
+//               ),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+// // ...
