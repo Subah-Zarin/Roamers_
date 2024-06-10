@@ -36,7 +36,7 @@ class login extends StatelessWidget
               children: [
                 Text('Login',style: TextStyle(
                   color: Colors.white,
-                  fontSize: 30,
+                  fontSize: 50,
                   fontWeight: FontWeight.bold,
                 ),),
                 SizedBox(height: 30,),
@@ -80,13 +80,13 @@ class login extends StatelessWidget
                     Navigator.pushNamed(context, 'homepage');
                   },
                   style: TextButton.styleFrom(
-                    backgroundColor: Color(0xff0ACF83),
+                    backgroundColor:Color(0xFFFFFFFF),
                     padding: EdgeInsets.symmetric(horizontal: 140, vertical: 15),
                   ),
                   child: Text(
                     'Login',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

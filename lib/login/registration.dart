@@ -11,7 +11,7 @@ class registration extends StatelessWidget{
                fit: BoxFit.cover,
                height: double.infinity,
                width: double.infinity,
-               image: AssetImage('assets/images/tea_garden.jpg')),
+               image: AssetImage('assets/images/bg2.jpg')),
            Container(
              decoration: BoxDecoration(
                  gradient: LinearGradient(
@@ -34,10 +34,10 @@ class registration extends StatelessWidget{
                children: [
                  Text('SignUp',style: TextStyle(
                    color: Colors.white,
-                   fontSize: 30,
+                   fontSize: 50,
                    fontWeight: FontWeight.bold,
                  ),),
-                 SizedBox(height: 30,),
+                 SizedBox(height: 10,),
                  Padding(
                    padding: EdgeInsets.all(20.0),
                    child: TextField(
@@ -101,13 +101,13 @@ class registration extends StatelessWidget{
                      Navigator.pushNamed(context, 'homepage');
                    },
                    style: TextButton.styleFrom(
-                     backgroundColor: Color(0xff0ACF83),
+                     backgroundColor:Color(0xFFFFFFFF),
                      padding: EdgeInsets.symmetric(horizontal: 140, vertical: 15),
                    ),
                    child: Text(
                      'REGISTER',
                      style: TextStyle(
-                       color: Colors.white,
+                       color: Colors.black,
                        fontWeight: FontWeight.bold,
                      ),
                    ),
