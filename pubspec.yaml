@@ -29,6 +29,9 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   get: ^4.6.6
+  font_awesome_flutter: ^10.7.0
+
+  ionicons: ^0.2.1
   flutter:
     sdk: flutter
 

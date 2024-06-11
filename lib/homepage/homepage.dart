@@ -1,98 +1,45 @@
-// ...
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:roamers/widget/custom_icon_button.dart';
 
 class homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(
-        children: [
-          SafeArea(
-            child: NavigationRail(
-              extended: false,
-              destinations: [
-                NavigationRailDestination(
-                  icon: Icon(Icons.home),
-                  label: Text('Home'),
-                ),
-                NavigationRailDestination(
-                  icon: Icon(Icons.favorite),
-                  label: Text('Favorites'),
-                ),
-                NavigationRailDestination(
-                  icon: Icon(Icons.account_circle),
-                  label: Text('profile'),
-                ),
-                NavigationRailDestination(
-                  icon: Icon(Icons.account_balance_wallet),
-                  label: Text('budget'),
-                ),
-              ],
-              selectedIndex: 0,
-              onDestinationSelected: (value) {
-                print('selected: $value');
-              },
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text("Unforgettable experiences"),
+            Text(
+              "Drive into your dream tour",
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .labelMedium,
+            ),
+          ],
+        ),
+        actions: const [
+          CustomIconButton(
+            icon: Icon(Ionicons.search_outline),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 8.0, right: 12),
+            child: CustomIconButton(
+              icon: Icon(Ionicons.notifications_outline),
             ),
           ),
-           // Expanded(
-           //   child: Container(
-           //     color: Theme.of(context).colorScheme.primaryContainer,
-           //     child: GeneratorPage(),
-           // ),
-           // ),
         ],
       ),
+
     );
   }
 }
 
 
 
-
-// class GeneratorPage extends StatelessWidget {
-//    @override
-//    Widget build(BuildContext context) {
-//      var appState = context.watch<MyAppState>();
-//      var pair = appState.current;
-//
-//      IconData icon;
-//     if (appState.favorites.contains(pair)) {
-//       icon = Icons.favorite;
-//     } else {
-//       icon = Icons.favorite_border;
-//     }
-//
-//     return Center(
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           BigCard(pair: pair),
-//           SizedBox(height: 10),
-//           Row(
-//             mainAxisSize: MainAxisSize.min,
-//             children: [
-//               ElevatedButton.icon(
-//                 onPressed: () {
-//                   appState.toggleFavorite();
-//                 },
-//                 icon: Icon(icon),
-//                 label: Text('Like'),
-//               ),
-//               SizedBox(width: 10),
-//               ElevatedButton(
-//                 onPressed: () {
-//                   appState.getNext();
-//                 },
-//                 child: Text('Next'),
-//               ),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-//
-// // ...
