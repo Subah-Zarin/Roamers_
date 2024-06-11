@@ -187,4 +187,4 @@ class registration extends StatelessWidget{
        ),
      );
   }
-}//
+}
