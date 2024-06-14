@@ -7,7 +7,7 @@ class welcomepage extends StatelessWidget {
       body: Stack(
         children: [
           Image(
-            
+
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
@@ -18,9 +18,9 @@ class welcomepage extends StatelessWidget {
               gradient: LinearGradient(
                 colors: [
                   Colors.black,
-                  Colors.black.withOpacity(0.8),
-                  Colors.black.withOpacity(0.15),
-                  Colors.black.withOpacity(0.5),
+                  Colors.black.withOpacity(0.55),
+                  Colors.black.withOpacity(0.55),
+                  Colors.black.withOpacity(0.400),
                 ],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
