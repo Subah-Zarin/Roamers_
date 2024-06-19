@@ -81,25 +81,47 @@ class HomePage extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Ionicons.home_outline),
-            label: "Home",
+            icon: IconButton(
+              icon: Icon(Ionicons.home_outline),
+              onPressed: () {
+                Navigator.pushNamed(context, 'homepage');
+              },
+            ),
+            label: "homepage",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Ionicons.bookmark_outline),
-            label: "Bookmark",
+            icon: IconButton(
+              icon: Icon(Ionicons.heart_outline),
+              onPressed: () {
+                Navigator.pushNamed(context, 'bookmark');
+              },
+            ),
+            label: "bookmark",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Ionicons.ticket_outline),
-            label: "Ticket",
+            icon: IconButton(
+              icon: Icon(Ionicons.people_outline),
+              onPressed: () {
+                Navigator.pushNamed(context, 'community');
+              },
+            ),
+            label: "community",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Ionicons.person_outline),
-            label: "Profile",
-          )
+            icon: IconButton(
+              icon: Icon(Ionicons.person_outline),
+              onPressed: () {
+                Navigator.pushNamed(context, 'profile');
+              },
+            ),
+            label: "profile",
+          ),
         ],
       ),
+
+
     );
   }
 }
