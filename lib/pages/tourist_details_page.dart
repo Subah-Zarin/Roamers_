@@ -84,7 +84,7 @@ class TouristDetailsPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      "Portic Team 8km",
+                      " 8km",
                       style: Theme.of(context).textTheme.bodySmall,
                     )
                   ],

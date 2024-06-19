@@ -16,7 +16,8 @@ void main() async {
       'welcome': (context) => welcomepage(),
       'login': (context) => login(),
       'register': (context) => registration(),
-      'homepage': (context) => homepage(),
+      'homepage': (context) => HomePage(),
     },
   ));
 }
+
