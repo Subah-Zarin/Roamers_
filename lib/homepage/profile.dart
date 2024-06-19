@@ -55,7 +55,7 @@ class _ProfileState extends State<profile> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "Account",
+                "My Profile",
                 style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
