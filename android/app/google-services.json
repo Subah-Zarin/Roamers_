@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "248880110904",
+    "project_id": "roamers-9037f",
+    "storage_bucket": "roamers-9037f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248880110904:android:ea9e8f3e560c14d8e8f5cd",
+        "android_client_info": {
+          "package_name": "com.example.roamers"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAioWzDx498AA2WrHwfCCBDdnnUrKjsOMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
