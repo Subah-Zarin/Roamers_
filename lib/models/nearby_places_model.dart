@@ -31,8 +31,5 @@ List<NearbyPlaceModel> nearbyPlaces = [
   NearbyPlaceModel(
     image: "assets/images/Lalbagh.jpg",
   ),
-<<<<<<< HEAD
 ];
-=======
-];
->>>>>>> 8688a86 (nearby place & models)
+
