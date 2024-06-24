@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:roamers/models/recommended_places_model.dart';
+import 'package:roamers/models/tourist_attraction_model.dart';
 import 'package:roamers/pages/tourist_details_page.dart';
 
 class RecommendedPlaces extends StatelessWidget {
@@ -14,6 +14,7 @@ class RecommendedPlaces extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
+          final place = touristAttractions[index];
           return SizedBox(
             width: 220,
             child: Card(
@@ -30,7 +31,7 @@ class RecommendedPlaces extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => TouristDetailsPage(
-                        image: recommendedPlaces[index].image,
+                        attraction: place,
                       ),
                     ),
                   );
@@ -41,7 +42,7 @@ class RecommendedPlaces extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: Image.asset(
-                        recommendedPlaces[index].image,
+                        place.images[0],
                         fit: BoxFit.cover,
                         height: 150,
                       ),
@@ -53,7 +54,7 @@ class RecommendedPlaces extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            recommendedPlaces[index].name,
+                            place.name,
                             style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
@@ -70,9 +71,9 @@ class RecommendedPlaces extends StatelessWidget {
                                 size: 14,
                               ),
                               const SizedBox(width: 5),
-                              const Text(
-                                "4.4",
-                                style: TextStyle(
+                              Text(
+                                place.rating.toString(),
+                                style: const TextStyle(
                                   fontSize: 12,
                                 ),
                               )
@@ -88,7 +89,7 @@ class RecommendedPlaces extends StatelessWidget {
                               ),
                               const SizedBox(width: 5),
                               Text(
-                                recommendedPlaces[index].location,
+                                "${place.distance.toStringAsFixed(1)} km",
                                 style: const TextStyle(
                                   fontSize: 12,
                                 ),
@@ -105,7 +106,7 @@ class RecommendedPlaces extends StatelessWidget {
           );
         },
         separatorBuilder: (context, index) => const SizedBox(width: 10),
-        itemCount: recommendedPlaces.length,
+        itemCount: touristAttractions.length,
       ),
     );
   }
