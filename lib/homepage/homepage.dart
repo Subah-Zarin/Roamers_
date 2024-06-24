@@ -79,8 +79,6 @@ class HomePage extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
         items: [
           BottomNavigationBarItem(
             icon: IconButton(
@@ -89,34 +87,34 @@ class HomePage extends StatelessWidget {
                 Navigator.pushNamed(context, 'homepage');
               },
             ),
-            label: "homepage",
+            label: "Homepage",
           ),
           BottomNavigationBarItem(
             icon: IconButton(
               icon: Icon(Ionicons.heart_outline),
               onPressed: () {
-                Navigator.pushNamed(context, 'bookmark');
+                Navigator.pushNamed(context, 'Favourite');
               },
             ),
-            label: "bookmark",
+            label: "Favourite",
           ),
           BottomNavigationBarItem(
             icon: IconButton(
               icon: Icon(Ionicons.people_outline),
               onPressed: () {
-                Navigator.pushNamed(context, 'communitypage');
+                Navigator.pushNamed(context, 'Community');
               },
             ),
-            label: "communitypage",
+            label: "Community",
           ),
           BottomNavigationBarItem(
             icon: IconButton(
               icon: Icon(Ionicons.person_outline),
               onPressed: () {
-                Navigator.pushNamed(context, 'profile');
+                Navigator.pushNamed(context, 'Profile');
               },
             ),
-            label: "profile",
+            label: "Profile",
           ),
         ],
       ),
