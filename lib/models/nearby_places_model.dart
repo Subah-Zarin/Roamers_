@@ -32,3 +32,4 @@ List<NearbyPlaceModel> nearbyPlaces = [
     image: "assets/images/Lalbagh.jpg",
   ),
 ];
+
