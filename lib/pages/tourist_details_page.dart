@@ -1,13 +1,14 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:roamers/widget/distance.dart';
+import '../models/tourist_attraction_model.dart';
 
 class TouristDetailsPage extends StatelessWidget {
-  const TouristDetailsPage({
-    Key? key,
-    required this.image,
-  }) : super(key: key);
-  final String image;
+  final TouristAttraction attraction;
+
+  const TouristDetailsPage({Key? key, required this.attraction}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -18,26 +19,30 @@ class TouristDetailsPage extends StatelessWidget {
           children: [
             SizedBox(
               height: size.height * 0.38,
-              width: double.maxFinite,
+              width: double.infinity,
               child: Stack(
-                fit: StackFit.expand,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.vertical(
-                          bottom: Radius.circular(20)),
-                      image: DecorationImage(
-                        image: AssetImage(image),
-                        fit: BoxFit.cover,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.4),
-                          spreadRadius: 0,
-                          blurRadius: 20,
-                          offset: const Offset(0, 10),
+                  CarouselSlider.builder(
+                    itemCount: attraction.images.length,
+                    itemBuilder: (context, index, realIndex) {
+                      return Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.vertical(
+                            bottom: Radius.circular(20),
+                          ),
+                          image: DecorationImage(
+                            image: AssetImage(attraction.images[index]),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ],
+                      );
+                    },
+                    options: CarouselOptions(
+                      height: size.height * 0.38,
+                      autoPlay: false,
+                      enlargeCenterPage: false,
+                      viewportFraction: 1.0,
                     ),
                   ),
                   Positioned(
@@ -47,7 +52,8 @@ class TouristDetailsPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.7),
                         borderRadius: const BorderRadius.horizontal(
-                            right: Radius.circular(15)),
+                          right: Radius.circular(15),
+                        ),
                       ),
                       child: Row(
                         children: [
@@ -66,7 +72,7 @@ class TouristDetailsPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -78,14 +84,14 @@ class TouristDetailsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Best visited place",
-                      style: Theme.of(context).textTheme.titleLarge,
+                      attraction.name,
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      " 8km",
-                      style: Theme.of(context).textTheme.bodySmall,
-                    )
+                      "${attraction.distance.toStringAsFixed(1)} km",
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
                   ],
                 ),
                 const Spacer(),
@@ -101,16 +107,16 @@ class TouristDetailsPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "4.6",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      attraction.rating.toString(),
+                      style: Theme.of(context).textTheme.bodyText2,
                     ),
                     Icon(
                       Ionicons.star,
                       color: Colors.yellow[800],
                       size: 15,
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             ),
             const SizedBox(height: 15),
@@ -122,16 +128,16 @@ class TouristDetailsPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "01d:32h:56m",
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      attraction.duration,
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     const SizedBox(height: 5),
                     Text(
                       "Started in",
-                      style: Theme.of(context).textTheme.bodySmall,
-                    )
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
                   ],
                 ),
               ],
@@ -144,7 +150,7 @@ class TouristDetailsPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                 image: const DecorationImage(
-                  image: AssetImage('assets/map.png'),
+                  image: AssetImage('assets/images/map.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -162,8 +168,8 @@ class TouristDetailsPage extends StatelessWidget {
                   horizontal: 8.0,
                 ),
               ),
-              child: const Text("Join this tour"),
-            )
+              child: const Text("View details"),
+            ),
           ],
         ),
       ),
