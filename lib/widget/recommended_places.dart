@@ -53,7 +53,7 @@ class RecommendedPlaces extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            recommendedPlaces[index].location,
+                            recommendedPlaces[index].name,
                             style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
