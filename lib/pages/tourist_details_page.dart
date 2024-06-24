@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:roamers/pages/view_details.dart';
 import 'package:roamers/widget/distance.dart';
 import '../models/tourist_attraction_model.dart';
 
@@ -159,7 +160,14 @@ class TouristDetailsPage extends StatelessWidget {
             const Distance(),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ViewDetailsPage(),
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 elevation: 0,
                 shape: const StadiumBorder(),
