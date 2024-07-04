@@ -1,46 +1,63 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../homepage/homepage.dart';
 
 class loginC extends GetxController {
-   static loginC get instance => Get.find();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
 
-   final email = TextEditingController();
-   final password = TextEditingController();
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-   @override
-   void onInit() {
-      super.onInit();
-   }
+  Future<bool> loginUser() async {
+    if (email.text.isEmpty || password.text.isEmpty) {
+      Get.snackbar(
+        'Error',
+        'Please fill in both email and password',
+        snackPosition: SnackPosition.TOP,
+      );
+      return false;
+    }
 
-   Future<void> login() async {
-      try {
-         await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: email.text.trim(),
-            password: password.text.trim(),
-         );
-         Get.to(HomePage());
-      } on FirebaseAuthException catch (e) {
-         String errorMessage;
-         switch (e.code) {
-            case 'wrong-password':
-               errorMessage = 'The password is incorrect. Please try again.';
-               break;
-            case 'user-not-found':
-               errorMessage = 'No user found with this email. Please check and try again.';
-               break;
-            case 'email-already-in-use':
-               errorMessage = 'The email is already in use by another account.';
-               break;
-            case 'invalid-email':
-               errorMessage = 'The email address is not valid.';
-               break;
-            default:
-               errorMessage = 'An unknown error occurred. Please try again later.';
-               break;
-         }
-         Get.snackbar("Login Failed", errorMessage);
+    try {
+      final QuerySnapshot result = await _firestore
+          .collection('users')
+          .where('email', isEqualTo: email.text)
+          .where('password', isEqualTo: password.text)
+          .get();
+      final List<DocumentSnapshot> documents = result.docs;
+
+      if (documents.isNotEmpty) {
+        Get.snackbar(
+          'Success',
+          'Logged in successfully',
+          snackPosition: SnackPosition.TOP,
+        );
+        Get.to(HomePage());
+        return true;
+      } else {
+        Get.snackbar(
+          'Error',
+          'Invalid email or password',
+          snackPosition: SnackPosition.TOP,
+        );
+        return false;
       }
-   }
+    } catch (e) {
+      print('Error logging in: $e');
+      Get.snackbar(
+        'Error',
+        'Failed to login: $e',
+        snackPosition: SnackPosition.TOP,
+      );
+      return false;
+    }
+  }
+
+  @override
+  void onClose() {
+    email.dispose();
+    password.dispose();
+    super.onClose();
+  }
 }
