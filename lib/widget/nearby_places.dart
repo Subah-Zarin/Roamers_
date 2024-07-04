@@ -92,7 +92,7 @@ class NearbyPlaces extends StatelessWidget {
                                       fontSize: 14,
                                       color: Theme.of(context).primaryColor,
                                     ),
-                                    text: "\$22",
+                                    text: "BDT2200",
                                     children: const [
                                       TextSpan(
                                         style: TextStyle(

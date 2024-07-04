@@ -1,49 +1,46 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-
 import '../homepage/homepage.dart';
 
 class loginC extends GetxController {
-   TextEditingController mail = TextEditingController();
-   TextEditingController password = TextEditingController();
+   static loginC get instance => Get.find();
+
+   final email = TextEditingController();
+   final password = TextEditingController();
 
    @override
    void onInit() {
       super.onInit();
    }
 
-   void loginUser() async {
+   Future<void> login() async {
       try {
-         UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: mail.text.trim(),
+         await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: email.text.trim(),
             password: password.text.trim(),
          );
-         print('User signed in: ${userCredential.user?.email}');
          Get.to(HomePage());
       } on FirebaseAuthException catch (e) {
-         if (e.code == 'user-not-found') {
-            print('No user found for that email.');
-         } else if (e.code == 'wrong-password') {
-            print('Wrong password provided.');
+         String errorMessage;
+         switch (e.code) {
+            case 'wrong-password':
+               errorMessage = 'The password is incorrect. Please try again.';
+               break;
+            case 'user-not-found':
+               errorMessage = 'No user found with this email. Please check and try again.';
+               break;
+            case 'email-already-in-use':
+               errorMessage = 'The email is already in use by another account.';
+               break;
+            case 'invalid-email':
+               errorMessage = 'The email address is not valid.';
+               break;
+            default:
+               errorMessage = 'An unknown error occurred. Please try again later.';
+               break;
          }
-      }
-   }
-
-   void registerUser() async {
-      try {
-         UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: mail.text.trim(),
-            password: password.text.trim(),
-         );
-         print('User registered: ${userCredential.user?.email}');
-         Get.to(HomePage());
-      } on FirebaseAuthException catch (e) {
-         if (e.code == 'weak-password') {
-            print('The password provided is too weak.');
-         } else if (e.code == 'email-already-in-use') {
-            print('The account already exists for that email.');
-         }
+         Get.snackbar("Login Failed", errorMessage);
       }
    }
 }

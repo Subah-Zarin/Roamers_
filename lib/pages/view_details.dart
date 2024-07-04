@@ -40,7 +40,7 @@ class ViewDetailsPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                   color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                   image: const DecorationImage(
-                    image: AssetImage('assets/images/Hanging bridge of Rangamati2.jpg'),
+                    image: AssetImage('assets/images/Hanging Bridge of Rangamati.png.jpg'),
                     fit: BoxFit.cover,
                   ),
                 ),
