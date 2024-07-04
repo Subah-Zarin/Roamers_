@@ -41,7 +41,7 @@ class TouristDetailsPage extends StatelessWidget {
                     },
                     options: CarouselOptions(
                       height: size.height * 0.38,
-                      autoPlay: false,
+                      autoPlay: true,
                       enlargeCenterPage: false,
                       viewportFraction: 1.0,
                     ),

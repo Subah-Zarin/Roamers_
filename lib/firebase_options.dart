@@ -46,6 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '248880110904',
     projectId: 'roamers-9037f',
     authDomain: 'roamers-9037f.firebaseapp.com',
+    databaseURL: 'https://roamers-9037f-default-rtdb.firebaseio.com',
     storageBucket: 'roamers-9037f.appspot.com',
     measurementId: 'G-7HEVWYBQF8',
   );
@@ -55,6 +56,7 @@ class DefaultFirebaseOptions {
     appId: '1:248880110904:android:ea9e8f3e560c14d8e8f5cd',
     messagingSenderId: '248880110904',
     projectId: 'roamers-9037f',
+    databaseURL: 'https://roamers-9037f-default-rtdb.firebaseio.com',
     storageBucket: 'roamers-9037f.appspot.com',
   );
 
@@ -63,6 +65,7 @@ class DefaultFirebaseOptions {
     appId: '1:248880110904:ios:bf27916f8b5e6a16e8f5cd',
     messagingSenderId: '248880110904',
     projectId: 'roamers-9037f',
+    databaseURL: 'https://roamers-9037f-default-rtdb.firebaseio.com',
     storageBucket: 'roamers-9037f.appspot.com',
     iosBundleId: 'com.example.roamers',
   );
@@ -72,6 +75,7 @@ class DefaultFirebaseOptions {
     appId: '1:248880110904:ios:bf27916f8b5e6a16e8f5cd',
     messagingSenderId: '248880110904',
     projectId: 'roamers-9037f',
+    databaseURL: 'https://roamers-9037f-default-rtdb.firebaseio.com',
     storageBucket: 'roamers-9037f.appspot.com',
     iosBundleId: 'com.example.roamers',
   );
@@ -82,7 +86,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '248880110904',
     projectId: 'roamers-9037f',
     authDomain: 'roamers-9037f.firebaseapp.com',
+    databaseURL: 'https://roamers-9037f-default-rtdb.firebaseio.com',
     storageBucket: 'roamers-9037f.appspot.com',
     measurementId: 'G-VT1L62WK1M',
   );
+
 }

@@ -102,19 +102,19 @@ class HomePage extends StatelessWidget {
             icon: IconButton(
               icon: Icon(Ionicons.people_outline),
               onPressed: () {
-                Navigator.pushNamed(context, 'Community');
+                Navigator.pushNamed(context,'communitypage');
               },
             ),
-            label: "Community",
+            label: "communitypage",
           ),
           BottomNavigationBarItem(
             icon: IconButton(
               icon: Icon(Ionicons.person_outline),
               onPressed: () {
-                Navigator.pushNamed(context, 'Profile');
+                Navigator.pushNamed(context,'profile');
               },
             ),
-            label: "Profile",
+            label: "profile",
           ),
         ],
       ),

@@ -53,7 +53,7 @@ class login extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.all(20.0),
                       child: TextField(
-                        controller: Get.find<loginC>().mail,
+                        controller: Get.find<loginC>().email,
                         decoration: InputDecoration(
                           hintText: 'Email Address',
                           label: Text('Email Address'),
