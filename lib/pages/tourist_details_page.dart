@@ -99,12 +99,12 @@ class TouristDetailsPage extends StatelessWidget {
                   children: [
                     Text(
                       attraction.name,
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 5),
                     Text(
                       "${attraction.distance.toStringAsFixed(1)} km",
-                      style: Theme.of(context).textTheme.bodyText2,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ],
                 ),
@@ -122,7 +122,7 @@ class TouristDetailsPage extends StatelessWidget {
                   children: [
                     Text(
                       attraction.rating.toString(),
-                      style: Theme.of(context).textTheme.bodyText2,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     Icon(
                       Ionicons.star,
@@ -143,14 +143,14 @@ class TouristDetailsPage extends StatelessWidget {
                   children: [
                     Text(
                       attraction.duration,
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     const SizedBox(height: 5),
                     Text(
                       "Started in",
-                      style: Theme.of(context).textTheme.bodyText2,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ],
                 ),
