@@ -17,6 +17,20 @@ class TouristAttraction {
 }
 List<TouristAttraction> touristAttractions = [
   TouristAttraction(
+    name: "St.Martin Island",
+    images: ["assets/images/St.Martin Island.png", "assets/images/st.martin2.jpeg", "assets/images/st.martin3.jpeg"],
+    distance: 10.5,
+    rating: 4.8,
+    duration: "02d:15h:20m",
+  ),
+  TouristAttraction(
+    name: "Sajek Valley",
+    images: ["assets/images/sajek valley.png", "assets/images/sajek2.jpeg", "assets/images/sajek3.jpeg"],
+    distance: 10.5,
+    rating: 4.8,
+    duration: "02d:15h:20m",
+  ),
+  TouristAttraction(
     name: "Hanging Bridge of Rangamati",
     images: ["assets/images/Hanging Bridge of Rangamati.png", "assets/images/Hanging bridge of Rangamati2.jpg.jpg", "assets/images/hanging bridge of Rangamati3.jpg.jpg"],
     distance: 311.2,
@@ -38,18 +52,5 @@ List<TouristAttraction> touristAttractions = [
     rating: 4.8,
     duration: "02d:15h:20m",
   ),
-  TouristAttraction(
-    name: "Sajek Valley",
-    images: ["assets/images/sajek valley.png", "assets/images/sajek2.jpeg", "assets/images/sajek3.jpeg"],
-    distance: 10.5,
-    rating: 4.8,
-    duration: "02d:15h:20m",
-  ),
-  TouristAttraction(
-    name: "St.Martin Island",
-    images: ["assets/images/St.Martin Island.png", "assets/images/st.martin2.jpeg", "assets/images/st.martin3.jpeg"],
-    distance: 10.5,
-    rating: 4.8,
-    duration: "02d:15h:20m",
-  ),
+
 ];

@@ -1,9 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:roamers/pages/view_details.dart';
 import 'package:roamers/widget/distance.dart';
+
+import '../homepage/favorites_provider.dart';
 import '../models/tourist_attraction_model.dart';
+
 
 class TouristDetailsPage extends StatelessWidget {
   final TouristAttraction attraction;
@@ -12,6 +16,7 @@ class TouristDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = FavoritesProvider.of(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
@@ -67,8 +72,16 @@ class TouristDetailsPage extends StatelessWidget {
                           ),
                           IconButton(
                             iconSize: 20,
-                            onPressed: () {},
-                            icon: const Icon(Ionicons.heart_outline),
+                            onPressed: () {
+                              provider.toggleFavorite(attraction);       // Changed here
+                            },
+                            icon: Icon(
+                              provider.isExist(attraction)                 // Changed here
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: Colors.red,
+                              size: 22,
+                            ),
                           ),
                         ],
                       ),

@@ -93,10 +93,10 @@ class HomePage extends StatelessWidget {
             icon: IconButton(
               icon: Icon(Ionicons.heart_outline),
               onPressed: () {
-                Navigator.pushNamed(context, 'Favourite');
+                Navigator.pushNamed(context, 'FavoritesPage');
               },
             ),
-            label: "Favourite",
+            label: "Favorites",
           ),
           BottomNavigationBarItem(
             icon: IconButton(
