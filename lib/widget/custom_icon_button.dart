@@ -4,8 +4,12 @@ class CustomIconButton extends StatelessWidget {
   const CustomIconButton({
     Key? key,
     required this.icon,
+    required this.onPressed,
   }) : super(key: key);
+
   final Widget icon;
+  final VoidCallback onPressed;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,7 +18,7 @@ class CustomIconButton extends StatelessWidget {
         shape: BoxShape.circle,
       ),
       child: IconButton(
-        onPressed: () {},
+        onPressed: onPressed,
         constraints: const BoxConstraints.tightFor(width: 40),
         color: Colors.black54,
         icon: icon,

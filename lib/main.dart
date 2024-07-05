@@ -8,6 +8,7 @@ import 'package:roamers/login/login.dart';
 import 'package:roamers/login/registration.dart';
 import 'package:roamers/pages/tourist_details_page.dart';
 import 'package:roamers/welcomePage/welcomepage.dart';
+import 'Setting/setting.dart';
 import 'homepage/FavoritesPage.dart';
 import 'homepage/communitypage.dart';
 import 'homepage/favorites_provider.dart';
@@ -42,6 +43,7 @@ void main() async {
           'tourist_details': (context) => TouristDetailsPage(
             attraction: ModalRoute.of(context)!.settings.arguments as TouristAttraction,
           ),
+          'Setting': (context) => Setting(),
         },
       ),
     ),

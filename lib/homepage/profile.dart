@@ -152,6 +152,25 @@ class _ProfileState extends State<profile> {
                   decoration: const InputDecoration(),
                 ),
               ),
+              const SizedBox(height: 40),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Add your logout functionality here
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blueGrey,
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  ),
+                  child: const Text(
+                    "Logout",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
