@@ -31,9 +31,7 @@ class HomePage extends StatelessWidget {
         actions: [
           CustomIconButton(
             icon: const Icon(Ionicons.search_outline),
-            onPressed: () {
-              Navigator.pushNamed(context, 'Setting');
-            },
+            onPressed: () {},
           ),
           Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 12),
