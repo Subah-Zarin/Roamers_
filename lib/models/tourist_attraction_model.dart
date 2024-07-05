@@ -18,7 +18,7 @@ class TouristAttraction {
 List<TouristAttraction> touristAttractions = [
   TouristAttraction(
     name: "Hanging Bridge of Rangamati",
-    images: ["assets/images/Hanging Bridge of Rangamati.png", "assets/images/Hanging bridge of Rangamati2.jpg.jpg", "assets/images/hanging bridge of Rangamati3.jpg.jpg"],
+    images: ["assets/images/Hanging Bridge of Rangamati.png", "assets/images/Hanging bridge of Rangamati2.jpg", "assets/images/hanging bridge of Rangamati3.jpg"],
     distance: 311.2,
     rating: 4.6,
     duration: "8hr:24min",
@@ -26,7 +26,7 @@ List<TouristAttraction> touristAttractions = [
   ),
   TouristAttraction(
     name: "Nilgiri",
-    images: ["assets/images/Nilgiri.png", "assets/images/nilgiri2.jpg.jpg", "assets/images/nilgiri3.jpg.jpg"],
+    images: ["assets/images/Nilgiri.png", "assets/images/nilgiri2.jpg", "assets/images/nilgiri3.jpg"],
     distance: 10.5,
     rating: 4.8,
     duration: "02d:15h:20m",
