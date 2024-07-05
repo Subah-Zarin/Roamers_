@@ -53,7 +53,7 @@ class login extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.all(20.0),
                       child: TextField(
-                        controller: Get.find<loginC>().email,
+                        controller: c.email,
                         decoration: InputDecoration(
                           hintText: 'Email Address',
                           label: Text('Email Address'),
@@ -65,7 +65,7 @@ class login extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.all(20.0),
                       child: TextField(
-                        controller: Get.find<loginC>().password,
+                        controller: c.password,
                         obscureText: true,
                         decoration: InputDecoration(
                           hintText: 'Password',
@@ -92,8 +92,11 @@ class login extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
                     TextButton(
-                      onPressed: () {
-                        Get.to(HomePage());
+                      onPressed: () async {
+                        bool success = await c.loginUser();
+                        if (success) {
+                          Get.to(HomePage());
+                        }
                       },
                       style: TextButton.styleFrom(
                         backgroundColor: Color(0xFFFFFFFF),
