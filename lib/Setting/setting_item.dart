@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'forward_button.dart';
 
+
 class SettingItem extends StatelessWidget {
   final String title;
   final Color bgColor;
