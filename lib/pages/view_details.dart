@@ -45,17 +45,6 @@ class ViewDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                top: 10,
-                left: 10,
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  iconSize: 30,
-                  icon: const Icon(Ionicons.chevron_back),
-                ),
-              ),
             ],
           ),
         ),
@@ -64,7 +53,7 @@ class ViewDetailsPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             "Hanging Bridge of Rangamati",
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
         const SizedBox(height: 10),
@@ -72,7 +61,7 @@ class ViewDetailsPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             "Per person: 2000TK",
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
         const SizedBox(height: 10),
@@ -80,7 +69,7 @@ class ViewDetailsPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             "Jhulonto Bridge in Bengali)is the landmark icon of Rangamati. It's a popular tourist spot and a must go destination. It is also connected by waterway from Kaptai.",
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
         const SizedBox(height: 20),

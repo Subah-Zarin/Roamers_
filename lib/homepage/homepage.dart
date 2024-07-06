@@ -6,6 +6,8 @@ import 'package:roamers/widget/nearby_places.dart';
 import 'package:roamers/widget/recommended_places.dart';
 import 'package:roamers/widget/tourist_places.dart';
 
+import '../Setting/setting.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -26,18 +28,29 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-        actions: const [
+        actions: [
           CustomIconButton(
-            icon: Icon(Ionicons.search_outline),
+            icon: const Icon(Ionicons.search_outline),
+            onPressed: () {},
           ),
           Padding(
-            padding: EdgeInsets.only(left: 8.0, right: 12),
+            padding: const EdgeInsets.only(left: 8.0, right: 12),
             child: CustomIconButton(
-              icon: Icon(Ionicons.notifications_outline),
+              icon: const Icon(Ionicons.settings_outline),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Setting(),
+                  ),
+                );
+              },
             ),
           ),
         ],
+
       ),
+
       body: ListView(
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.all(14),
@@ -93,10 +106,10 @@ class HomePage extends StatelessWidget {
             icon: IconButton(
               icon: Icon(Ionicons.heart_outline),
               onPressed: () {
-                Navigator.pushNamed(context, 'Favourite');
+                Navigator.pushNamed(context, 'FavoritesPage');
               },
             ),
-            label: "Favourite",
+            label: "Favorites",
           ),
           BottomNavigationBarItem(
             icon: IconButton(

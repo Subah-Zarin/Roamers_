@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:roamers/models/tourist_attraction_model.dart';
 import 'package:roamers/pages/tourist_details_page.dart';
 import 'package:roamers/widget/distance.dart';
+
+import '../models/nearby_places_model.dart';
+
 
 class NearbyPlaces extends StatelessWidget {
   const NearbyPlaces({Key? key}) : super(key: key);
@@ -9,8 +11,8 @@ class NearbyPlaces extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: List.generate(touristAttractions.length, (index) {
-        final place = touristAttractions[index];
+      children: List.generate(nearbyPlaces.length, (index) {
+        final place = nearbyPlaces[index];
         return Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: SizedBox(
@@ -24,14 +26,14 @@ class NearbyPlaces extends StatelessWidget {
               child: InkWell(
                 borderRadius: BorderRadius.circular(12),
                 onTap: () {
-                  Navigator.push(
+                  /*Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => TouristDetailsPage(
-                        attraction: place,
+                        attraction: place, // Modified
                       ),
                     ),
-                  );
+                  );*/
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -41,7 +43,7 @@ class NearbyPlaces extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Image.asset(
-                          place.images.first,
+                          place.images.first, // Modified
                           height: double.maxFinite,
                           width: 130,
                           fit: BoxFit.cover,
@@ -58,13 +60,13 @@ class NearbyPlaces extends StatelessWidget {
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
-                              maxLines: 2, // Limit to 2 lines to prevent overflow
+                              maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(height: 5),
                             Text(
                               place.duration,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 12,
                                 color: Colors.grey,
                               ),
