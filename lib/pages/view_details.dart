@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ViewDetailsPage extends StatelessWidget {
   @override
@@ -52,7 +53,7 @@ class ViewDetailsPage extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   iconSize: 30,
-                  icon: const Icon(Ionicons.chevron_back),
+                  icon: const Icon(Icons.ice_skating_outlined),
                 ),
               ),
             ],

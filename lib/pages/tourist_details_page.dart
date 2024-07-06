@@ -3,16 +3,41 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:roamers/pages/view_details.dart';
 import 'package:roamers/widget/distance.dart';
-import '../models/tourist_attraction_model.dart';
+import 'package:roamers/models/tourist_attraction_model.dart';
+import 'package:roamers/pages/direction_model.dart';
+import 'package:roamers/pages/direction_repository.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class TouristDetailsPage extends StatelessWidget {
+class TouristDetailsPage extends StatefulWidget {
   final TouristAttraction attraction;
 
   const TouristDetailsPage({Key? key, required this.attraction}) : super(key: key);
 
   @override
+  _TouristDetailsPageState createState() => _TouristDetailsPageState();
+}
+
+class _TouristDetailsPageState extends State<TouristDetailsPage> {
+  GoogleMapController? _googleMapController;
+  Marker? _origin;
+  Marker? _destination;
+  Directions? _info;
+
+  static const _initialCameraPosition = CameraPosition(
+    target: LatLng(23.8103, 90.4125), // Coordinates for Dhaka, Bangladesh
+    zoom: 11.5,
+  );
+
+  @override
+  void dispose() {
+    _googleMapController?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -24,7 +49,7 @@ class TouristDetailsPage extends StatelessWidget {
               child: Stack(
                 children: [
                   CarouselSlider.builder(
-                    itemCount: attraction.images.length,
+                    itemCount: widget.attraction.images.length,
                     itemBuilder: (context, index, realIndex) {
                       return Container(
                         width: double.infinity,
@@ -33,7 +58,7 @@ class TouristDetailsPage extends StatelessWidget {
                             bottom: Radius.circular(20),
                           ),
                           image: DecorationImage(
-                            image: AssetImage(attraction.images[index]),
+                            image: AssetImage(widget.attraction.images[index]),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -85,12 +110,12 @@ class TouristDetailsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      attraction.name,
+                      widget.attraction.name,
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      "${attraction.distance.toStringAsFixed(1)} km",
+                      "${widget.attraction.distance.toStringAsFixed(1)} km",
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
@@ -108,7 +133,7 @@ class TouristDetailsPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      attraction.rating.toString(),
+                      widget.attraction.rating.toString(),
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     Icon(
@@ -129,7 +154,7 @@ class TouristDetailsPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      attraction.duration,
+                      widget.attraction.duration,
                       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
@@ -154,6 +179,25 @@ class TouristDetailsPage extends StatelessWidget {
                   image: AssetImage('assets/images/map.png'),
                   fit: BoxFit.cover,
                 ),
+              ),
+              child: GoogleMap(
+                initialCameraPosition: _initialCameraPosition,
+                onMapCreated: (controller) => _googleMapController = controller,
+                markers: {
+                  if (_origin != null) _origin!,
+                  if (_destination != null) _destination!,
+                },
+                polylines: {
+                  if (_info != null)
+                    Polyline(
+                      polylineId: const PolylineId('overview_polyline'),
+                      color: Colors.red,
+                      width: 5,
+                      points: _info!.polylinePoints
+                          .map((e) => LatLng(e.latitude, e.longitude))
+                          .toList(),
+                    ),
+                },
               ),
             ),
             const SizedBox(height: 15),
