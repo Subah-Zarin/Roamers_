@@ -115,7 +115,7 @@ class HomePage extends StatelessWidget {
             icon: IconButton(
               icon: Icon(Ionicons.people_outline),
               onPressed: () {
-                Navigator.pushNamed(context,'communitypage');
+                Navigator.pushNamed(context, 'communitypage');
               },
             ),
             label: "communitypage",
@@ -124,7 +124,7 @@ class HomePage extends StatelessWidget {
             icon: IconButton(
               icon: Icon(Ionicons.person_outline),
               onPressed: () {
-                Navigator.pushNamed(context,'profile');
+                Navigator.pushNamed(context, 'profile');
               },
             ),
             label: "profile",

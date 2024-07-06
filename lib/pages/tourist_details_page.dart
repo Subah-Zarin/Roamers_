@@ -1,13 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:roamers/pages/view_details.dart';
 import 'package:roamers/widget/distance.dart';
-
-import '../homepage/favorites_provider.dart';
 import '../models/tourist_attraction_model.dart';
-
 
 class TouristDetailsPage extends StatelessWidget {
   final TouristAttraction attraction;
@@ -16,7 +12,6 @@ class TouristDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = FavoritesProvider.of(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
@@ -72,16 +67,8 @@ class TouristDetailsPage extends StatelessWidget {
                           ),
                           IconButton(
                             iconSize: 20,
-                            onPressed: () {
-                              provider.toggleFavorite(attraction);       // Changed here
-                            },
-                            icon: Icon(
-                              provider.isExist(attraction)                 // Changed here
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
-                              color: Colors.red,
-                              size: 22,
-                            ),
+                            onPressed: () {},
+                            icon: const Icon(Ionicons.heart_outline),
                           ),
                         ],
                       ),
@@ -99,12 +86,12 @@ class TouristDetailsPage extends StatelessWidget {
                   children: [
                     Text(
                       attraction.name,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     const SizedBox(height: 5),
                     Text(
                       "${attraction.distance.toStringAsFixed(1)} km",
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
                 ),
@@ -122,7 +109,7 @@ class TouristDetailsPage extends StatelessWidget {
                   children: [
                     Text(
                       attraction.rating.toString(),
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                     Icon(
                       Ionicons.star,
@@ -143,14 +130,14 @@ class TouristDetailsPage extends StatelessWidget {
                   children: [
                     Text(
                       attraction.duration,
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     const SizedBox(height: 5),
                     Text(
                       "Started in",
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                   ],
                 ),
@@ -164,7 +151,7 @@ class TouristDetailsPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                 image: const DecorationImage(
-                  image: AssetImage('assets/images/map2.png'),
+                  image: AssetImage('assets/images/map.png'),
                   fit: BoxFit.cover,
                 ),
               ),
