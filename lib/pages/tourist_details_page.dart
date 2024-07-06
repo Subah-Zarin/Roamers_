@@ -23,6 +23,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
   Marker? _destination;
   Directions? _info;
 
+
   static const _initialCameraPosition = CameraPosition(
     target: LatLng(23.8103, 90.4125), // Coordinates for Dhaka, Bangladesh
     zoom: 11.5,
