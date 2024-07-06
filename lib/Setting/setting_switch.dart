@@ -59,3 +59,4 @@ class SettingSwitch extends StatelessWidget {
     );
   }
 }
+
