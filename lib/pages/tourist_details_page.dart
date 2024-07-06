@@ -229,3 +229,4 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
     );
   }
 }
+
