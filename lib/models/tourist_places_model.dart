@@ -14,4 +14,3 @@ List<TouristPlacesModel> touristPlaces = [
   TouristPlacesModel(name: "City", image: "assets/images/city.png"),
   TouristPlacesModel(name: "Desert", image: "assets/images/desert.png"),
 ];
-

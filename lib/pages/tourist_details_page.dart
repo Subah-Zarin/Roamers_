@@ -7,7 +7,6 @@ import 'package:roamers/widget/distance.dart';
 import '../homepage/favorites_provider.dart';
 import '../models/tourist_attraction_model.dart';
 
-
 class TouristDetailsPage extends StatelessWidget {
   final TouristAttraction attraction;
 
