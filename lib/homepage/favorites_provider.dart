@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../models/tourist_attraction_model.dart';
 
 class FavoritesProvider extends ChangeNotifier {
