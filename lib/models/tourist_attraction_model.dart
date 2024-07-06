@@ -54,3 +54,4 @@ List<TouristAttraction> touristAttractions = [
     duration: "02d:15h:20m",
   ),
 ];
+
