@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:roamers/models/recommended_places_model.dart';
+import 'package:roamers/pages/tourist_details_page.dart';
 
-import '../models/recommended_places_model.dart'; // Assuming you have this model defined
+import '../models/tourist_attraction_model.dart';
 
 class RecommendedPlaces extends StatelessWidget {
   const RecommendedPlaces({Key? key}) : super(key: key);
@@ -11,16 +15,16 @@ class RecommendedPlaces extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('recommended_places').snapshots(),
-      builder: (context, snapshot) {
+      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         }
 
-        if (!snapshot.hasData) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
         }
 
-        final List<DocumentSnapshot> documents = snapshot.data!.docs;
+        final List<QueryDocumentSnapshot> documents = snapshot.data!.docs;
 
         return SizedBox(
           height: 235,
@@ -28,12 +32,11 @@ class RecommendedPlaces extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              final RecommendedPlaceModel place = RecommendedPlaceModel(
-                image: documents[index]['image'],
-                rating: documents[index]['rating'],
-                name: documents[index]['name'],
-                location: documents[index]['location'],
-              );
+              final doc = documents[index];
+              final data = doc.data() as Map<String, dynamic>;
+              final place = RecommendedPlaceModel.fromFirestore(data);
+
+              bool isBase64Image = isBase64(place.image);
 
               return SizedBox(
                 width: 220,
@@ -47,17 +50,33 @@ class RecommendedPlaces extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(12),
                     onTap: () {
-                      // Handle onTap
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TouristDetailsPage(
+                            attraction: place,
+                          ),
+                        ),
+                      );
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(12),
-                          child: Image.network(
+                          child: isBase64Image
+                              ? Image.memory(
+                            base64Decode(place.image.split(',').last),
+                            fit: BoxFit.cover,
+                            height: 150,
+                          )
+                              : Image.network(
                             place.image,
                             fit: BoxFit.cover,
                             height: 150,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Icon(Icons.error);
+                            },
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -124,5 +143,11 @@ class RecommendedPlaces extends StatelessWidget {
         );
       },
     );
+  }
+
+  bool isBase64(String str) {
+    final base64RegExp = RegExp(
+        r'^data:image\/(jpeg|jpg|png);base64,([A-Za-z0-9+/=]+\s*)*$');
+    return base64RegExp.hasMatch(str);
   }
 }
