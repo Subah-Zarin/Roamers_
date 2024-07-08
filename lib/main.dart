@@ -14,13 +14,19 @@ import 'homepage/communitypage.dart';
 import 'homepage/favorites_provider.dart';
 import 'homepage/profile.dart';
 import 'models/tourist_attraction_model.dart';
+import 'package:roamers/auth/auth_service.dart';
+import 'package:roamers/Chat/chat.dart';
+import 'package:roamers/auth/auth_wrapper.dart';
+
+
+
+
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
-    name: 'name here',
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
@@ -37,13 +43,8 @@ void main() async {
           'login': (context) => login(),
           'register': (context) => registration(),
           'homepage': (context) => HomePage(),
-          'profile': (context) => profile(),
-          'communitypage': (context) => communitypage(),
-          'FavoritesPage': (context) => FavoritesPage(),
-          'tourist_details': (context) => TouristDetailsPage(
-            attraction: ModalRoute.of(context)!.settings.arguments as TouristAttraction,
-          ),
-          'Setting': (context) => Setting(),
+
+          'chat': (context) => AuthWrapper(), // Wrap ChatPage with AuthWrapper
         },
       ),
     ),

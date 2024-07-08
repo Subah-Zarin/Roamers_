@@ -8,7 +8,79 @@ import 'package:roamers/widget/tourist_places.dart';
 
 import '../Setting/setting.dart';
 
+
+
+
+
+
+import 'package:flutter/material.dart';
+import 'package:roamers/auth/auth_service.dart';
+import 'package:roamers/Chat/chat.dart';
+import 'package:roamers/auth/auth_wrapper.dart';
+
 class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home Page'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Welcome to the Home Page',
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, 'chat');
+              },
+              child: Text('Go to Chat'),
+            ),
+          ],
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Home'),
+              onTap: () {
+                Navigator.pushNamed(context, 'homepage');
+              },
+            ),
+            ListTile(
+              title: Text('Chat'),
+              onTap: () {
+                Navigator.pushNamed(context, 'chat');
+              },
+            ),
+            // Add more ListTile items for other routes if needed
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+ /*class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -133,4 +205,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}
+} */
