@@ -1,12 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:provider/provider.dart';
 import 'package:roamers/pages/view_details.dart';
 import 'package:roamers/widget/distance.dart';
 import 'package:roamers/models/tourist_attraction_model.dart';
 import 'package:roamers/pages/direction_model.dart';
 import 'package:roamers/pages/direction_repository.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../homepage/favorites_provider.dart';
 
 class TouristDetailsPage extends StatefulWidget {
   final TouristAttraction attraction;
@@ -23,7 +26,6 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
   Marker? _destination;
   Directions? _info;
 
-
   static const _initialCameraPosition = CameraPosition(
     target: LatLng(23.8103, 90.4125), // Coordinates for Dhaka, Bangladesh
     zoom: 11.5,
@@ -37,6 +39,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<FavoritesProvider>(context);
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -93,8 +96,16 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                           ),
                           IconButton(
                             iconSize: 20,
-                            onPressed: () {},
-                            icon: const Icon(Ionicons.heart_outline),
+                            onPressed: () {
+                              provider.toggleFavorite(widget.attraction);
+                            },
+                            icon: Icon(
+                              provider.isExist(widget.attraction)
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: Colors.red,
+                              size: 22,
+                            ),
                           ),
                         ],
                       ),
@@ -177,7 +188,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                 borderRadius: BorderRadius.circular(15),
                 color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                 image: const DecorationImage(
-                  image: AssetImage('assets/images/map.png'),
+                  image: AssetImage('assets/images/map2.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -229,4 +240,3 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
     );
   }
 }
-
