@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:roamers/models/models/hotel_details.dart';
 
 class ViewDetailsPage extends StatelessWidget {
   @override
@@ -29,18 +30,18 @@ class ViewDetailsPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: size.height * 0.4,
+          height: size.height * 0.3,
           width: double.infinity,
           child: Stack(
             children: [
               Container(
-                height: 180,
+                height: 200,
                 width: double.maxFinite,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                   image: const DecorationImage(
-                    image: AssetImage('assets/images/Hanging Bridge of Rangamati.png.jpg'),
+                    image: AssetImage('assets/images/st.martin2.jpeg'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -53,7 +54,7 @@ class ViewDetailsPage extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   iconSize: 30,
-                  icon: const Icon(Icons.ice_skating_outlined),
+                  icon: const Icon(Icons.star),
                 ),
               ),
             ],
@@ -63,7 +64,7 @@ class ViewDetailsPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            "Hanging Bridge of Rangamati",
+            "St.Martin Island",
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),
@@ -72,15 +73,15 @@ class ViewDetailsPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             "Per person: 2000TK",
-            style: Theme.of(context).textTheme.headlineSmall,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
         const SizedBox(height: 10),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            "Jhulonto Bridge in Bengali)is the landmark icon of Rangamati. It's a popular tourist spot and a must go destination. It is also connected by waterway from Kaptai.",
-            style: Theme.of(context).textTheme.headlineSmall,
+            "Saint Martin Island is a small island in the northeastern part of the Bay of Bengal.There is a small adjoining island that is separated at high tide, called Chera Dwip",
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),
         const SizedBox(height: 20),
@@ -122,7 +123,12 @@ class ViewDetailsPage extends StatelessWidget {
       children: [
         TextButton(
           onPressed: () {
-
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const hoteldetails(),
+              ),
+            );
           },
           style: TextButton.styleFrom(
             backgroundColor: Colors.orange, // Background color of the button
@@ -132,23 +138,6 @@ class ViewDetailsPage extends StatelessWidget {
             'Hotels',
             style: TextStyle(
               color: Colors.white, // Text color of the button
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
-          ),
-        ),
-        TextButton(
-          onPressed: () {
-
-          },
-          style: TextButton.styleFrom(
-            backgroundColor: Colors.orange,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15), // Adjust padding as needed
-          ),
-          child: Text(
-            'Tickets',
-            style: TextStyle(
-              color: Colors.white,
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),

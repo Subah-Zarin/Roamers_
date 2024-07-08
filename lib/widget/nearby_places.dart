@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:roamers/pages/tourist_details_page.dart';
+import 'package:roamers/models/nearby_places_model.dart';
+
 import 'package:roamers/widget/distance.dart';
 
-import '../models/nearby_places_model.dart';
-
+import '../pages/NearbyPlaceDetailsPage.dart';
 
 class NearbyPlaces extends StatelessWidget {
   const NearbyPlaces({Key? key}) : super(key: key);
@@ -26,14 +26,14 @@ class NearbyPlaces extends StatelessWidget {
               child: InkWell(
                 borderRadius: BorderRadius.circular(12),
                 onTap: () {
-                  /*Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => TouristDetailsPage(
-                        attraction: place, // Modified
+                      builder: (context) => NearbyPlaceDetailsPage(
+                        place: place,
                       ),
                     ),
-                  );*/
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -43,7 +43,7 @@ class NearbyPlaces extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Image.asset(
-                          place.images.first, // Modified
+                          place.images.first,
                           height: double.maxFinite,
                           width: 130,
                           fit: BoxFit.cover,

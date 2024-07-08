@@ -23,10 +23,10 @@ class _SettingState extends State<Setting> {
         leading: IconButton(
           onPressed: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
+              context,
+              MaterialPageRoute(
                 builder: (context) => const HomePage(),
-                ),
+              ),
             );
           },
           icon: const Icon(Ionicons.chevron_back_outline),

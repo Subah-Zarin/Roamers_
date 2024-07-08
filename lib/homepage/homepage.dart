@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:roamers/homepage/communitypage.dart';
 import 'package:roamers/widget/custom_icon_button.dart';
 import 'package:roamers/widget/location_card.dart';
 import 'package:roamers/widget/nearby_places.dart';
@@ -70,7 +71,14 @@ class HomePage extends StatelessWidget {
                 "Recommendation",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              TextButton(onPressed: () {}, child: const Text("View All"))
+              TextButton(onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => communitypage(),
+                  ),
+                );
+              }, child: const Text("View All"))
             ],
           ),
           const SizedBox(height: 10),
@@ -83,7 +91,14 @@ class HomePage extends StatelessWidget {
                 "Most Visited Places",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              TextButton(onPressed: () {}, child: const Text("View All"))
+              TextButton(onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => communitypage(),
+                  ),
+                );
+              }, child: const Text("View All"))
             ],
           ),
           const SizedBox(height: 10),

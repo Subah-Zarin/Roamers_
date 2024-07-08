@@ -1,15 +1,13 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 import 'package:roamers/pages/view_details.dart';
 import 'package:roamers/widget/distance.dart';
 import 'package:roamers/models/tourist_attraction_model.dart';
-import 'package:roamers/pages/direction_model.dart';
-import 'package:roamers/pages/direction_repository.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import '../homepage/favorites_provider.dart';
+import 'direction_model.dart';
 
 class TouristDetailsPage extends StatefulWidget {
   final TouristAttraction attraction;
@@ -115,28 +113,49 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
               ),
             ),
             const SizedBox(height: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.attraction.name,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  "${widget.attraction.distance.toStringAsFixed(1)} km",
+                  style: Theme.of(context).textTheme.subtitle2,
+                ),
+              ],
+            ),
+            const SizedBox(height: 15),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
-                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      widget.attraction.name,
-                      style: Theme.of(context).textTheme.headlineSmall,
+                      widget.attraction.duration,
+                      style: Theme.of(context).textTheme.headline6?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      "${widget.attraction.distance.toStringAsFixed(1)} km",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      "Started in", // Replace with relevant detail if needed
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                   ],
                 ),
-                const Spacer(),
+                Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(right: 4),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Handle chat or communication action if needed
+                    },
                     iconSize: 20,
                     icon: const Icon(Ionicons.chatbubble_ellipses_outline),
                   ),
@@ -146,7 +165,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                   children: [
                     Text(
                       widget.attraction.rating.toString(),
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: Theme.of(context).textTheme.subtitle2,
                     ),
                     Icon(
                       Ionicons.star,
@@ -158,29 +177,6 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
               ],
             ),
             const SizedBox(height: 15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      widget.attraction.duration,
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      "Started in",
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
             Container(
               height: 180,
               width: double.maxFinite,

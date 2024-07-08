@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';  // Import FirebaseAuth
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:ionicons/ionicons.dart';
-
 import 'EditItem.dart';
 
 class profile extends StatefulWidget {
@@ -13,11 +14,18 @@ class profile extends StatefulWidget {
 
 class _ProfileState extends State<profile> {
   String gender = "man";
+  User? loggedInUser;
 
   final TextStyle darkTextStyle = const TextStyle(
     color: Colors.black87,
     fontSize: 16,
   );
+
+  @override
+  void initState() {
+    super.initState();
+    loggedInUser = FirebaseAuth.instance.currentUser;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +96,9 @@ class _ProfileState extends State<profile> {
                 title: "Name",
                 widget: TextField(
                   style: darkTextStyle,
-                  decoration: const InputDecoration(),
+                  decoration: InputDecoration(
+                    hintText: loggedInUser?.displayName ?? '',
+                  ),
                 ),
               ),
               const SizedBox(height: 40),
@@ -149,14 +159,16 @@ class _ProfileState extends State<profile> {
                 title: "Email",
                 widget: TextField(
                   style: darkTextStyle,
-                  decoration: const InputDecoration(),
+                  decoration: InputDecoration(
+                    hintText: loggedInUser?.email ?? '',
+                  ),
                 ),
               ),
               const SizedBox(height: 40),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    // Add your logout functionality here
+                    Get.toNamed('login');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueGrey,
