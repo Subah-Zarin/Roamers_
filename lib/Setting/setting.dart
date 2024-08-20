@@ -87,7 +87,7 @@ class _SettingState extends State<Setting> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const profile(),
+                            builder: (context) => profile(),
                           ),
                         );
                       },

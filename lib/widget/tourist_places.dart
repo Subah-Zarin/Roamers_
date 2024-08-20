@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roamers/models/tourist_places_model.dart';
-import 'package:roamers/detail_screen.dart';
-
-import 'detail_screen.dart';
+import 'package:roamers/detail_screen.dart' as detail_screen_main; // Alias this import
+import 'package:roamers/widget/detail_screen.dart' as detail_screen_widget; // Alias this import
 
 class TouristPlaces extends StatelessWidget {
   const TouristPlaces({Key? key}) : super(key: key);
@@ -17,11 +16,10 @@ class TouristPlaces extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              // Navigate to the DetailScreen when the chip is tapped
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailScreen(place: touristPlaces[index]),
+                  builder: (context) => detail_screen_widget.DetailScreen(place: touristPlaces[index]),
                 ),
               );
             },

@@ -16,7 +16,6 @@ List<TouristPlacesModel> touristPlaces = [
   TouristPlacesModel(name: "Beach", image: "assets/images/beach.png"),
   TouristPlacesModel(name: "Forest", image: "assets/images/forest.png"),
   TouristPlacesModel(name: "City", image: "assets/images/city.png"),
-  TouristPlacesModel(name: "Desert", image: "assets/images/desert.png"),
 ];
 
 
