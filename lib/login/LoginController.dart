@@ -1,13 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../homepage/homepage.dart';
 
-class loginC extends GetxController {
+class LoginController extends GetxController {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  // Email validation regex
+  final RegExp emailRegex = RegExp(r'^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
 
   Future<bool> loginUser() async {
     if (email.text.isEmpty || password.text.isEmpty) {
@@ -19,15 +24,24 @@ class loginC extends GetxController {
       return false;
     }
 
-    try {
-      final QuerySnapshot result = await _firestore
-          .collection('users')
-          .where('email', isEqualTo: email.text)
-          .where('password', isEqualTo: password.text)
-          .get();
-      final List<DocumentSnapshot> documents = result.docs;
+    // Validate email format
+    if (!emailRegex.hasMatch(email.text)) {
+      Get.snackbar(
+        'Error',
+        'Please enter a valid email address',
+        snackPosition: SnackPosition.TOP,
+      );
+      return false;
+    }
 
-      if (documents.isNotEmpty) {
+    try {
+      // Using Firebase Authentication instead of querying Firestore directly
+      final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email.text,
+        password: password.text,
+      );
+
+      if (userCredential.user != null) {
         Get.snackbar(
           'Success',
           'Logged in successfully',

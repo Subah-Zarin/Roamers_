@@ -118,12 +118,12 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
               children: [
                 Text(
                   widget.attraction.name,
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 5),
                 Text(
                   "${widget.attraction.distance.toStringAsFixed(1)} km",
-                  style: Theme.of(context).textTheme.subtitle2,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ],
             ),
@@ -138,14 +138,14 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                   children: [
                     Text(
                       widget.attraction.duration,
-                      style: Theme.of(context).textTheme.headline6?.copyWith(
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     const SizedBox(height: 5),
                     Text(
                       "Started in", // Replace with relevant detail if needed
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                   ],
                 ),
@@ -165,7 +165,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                   children: [
                     Text(
                       widget.attraction.rating.toString(),
-                      style: Theme.of(context).textTheme.subtitle2,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     Icon(
                       Ionicons.star,

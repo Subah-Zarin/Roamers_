@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'registrationC.dart';
 
 class registration extends StatelessWidget {
-  final registrationC c = Get.put(registrationC());
+  final RegistrationController c = Get.put(RegistrationController());
 
   @override
   Widget build(BuildContext context) {

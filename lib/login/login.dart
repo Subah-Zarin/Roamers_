@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'loginC.dart';
+import 'LoginController.dart';
 import 'registration.dart';
 import '../homepage/homepage.dart';
 
 class login extends StatelessWidget {
-  final loginC c = Get.put(loginC());
+  final LoginController c = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
