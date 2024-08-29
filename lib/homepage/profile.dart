@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';  // Import FirebaseAuth
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:ionicons/ionicons.dart';
 import 'EditItem.dart';
 
 class profile extends StatefulWidget {
-  const profile({super.key});
+  const profile({Key? key}) : super(key: key);
 
   @override
   State<profile> createState() => _ProfileState();
@@ -15,6 +15,11 @@ class profile extends StatefulWidget {
 class _ProfileState extends State<profile> {
   String gender = "man";
   User? loggedInUser;
+  String userName = "";
+  String age = "";
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _ageController = TextEditingController();
 
   final TextStyle darkTextStyle = const TextStyle(
     color: Colors.black87,
@@ -25,6 +30,49 @@ class _ProfileState extends State<profile> {
   void initState() {
     super.initState();
     loggedInUser = FirebaseAuth.instance.currentUser;
+    _fetchUserData();
+  }
+
+  Future<void> _fetchUserData() async {
+    if (loggedInUser != null) {
+      try {
+        final userDoc = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(loggedInUser!.uid)
+            .get();
+
+        if (userDoc.exists) {
+          setState(() {
+            userName = userDoc.data()?['username'] ?? '';
+            age = userDoc.data()?['age']?.toString() ?? '';
+            gender = userDoc.data()?['gender'] ?? 'man';
+            _nameController.text = userName;
+            _ageController.text = age;
+          });
+        }
+      } catch (e) {
+        print('Error fetching user data: $e');
+      }
+    }
+  }
+
+  Future<void> _updateUserProfile() async {
+    if (loggedInUser != null) {
+      try {
+        await FirebaseFirestore.instance.collection('users').doc(loggedInUser!.uid).update({
+          'username': _nameController.text,
+          'age': int.tryParse(_ageController.text) ?? 0,
+          'gender': gender,
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Profile updated successfully!')),
+        );
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error updating profile: $e')),
+        );
+      }
+    }
   }
 
   @override
@@ -42,7 +90,7 @@ class _ProfileState extends State<profile> {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
-              onPressed: () {},
+              onPressed: _updateUserProfile,
               style: IconButton.styleFrom(
                 backgroundColor: Colors.lightBlueAccent,
                 shape: RoundedRectangleBorder(
@@ -95,9 +143,10 @@ class _ProfileState extends State<profile> {
               EditItem(
                 title: "Name",
                 widget: TextField(
+                  controller: _nameController,
                   style: darkTextStyle,
-                  decoration: InputDecoration(
-                    hintText: loggedInUser?.displayName ?? '',
+                  decoration: const InputDecoration(
+                    hintText: 'Enter your name',
                   ),
                 ),
               ),
@@ -150,8 +199,12 @@ class _ProfileState extends State<profile> {
               EditItem(
                 title: "Age",
                 widget: TextField(
+                  controller: _ageController,
+                  keyboardType: TextInputType.number,
                   style: darkTextStyle,
-                  decoration: const InputDecoration(),
+                  decoration: const InputDecoration(
+                    hintText: 'Enter your age',
+                  ),
                 ),
               ),
               const SizedBox(height: 40),
@@ -162,6 +215,7 @@ class _ProfileState extends State<profile> {
                   decoration: InputDecoration(
                     hintText: loggedInUser?.email ?? '',
                   ),
+                  enabled: false, // Make email field read-only
                 ),
               ),
               const SizedBox(height: 40),
