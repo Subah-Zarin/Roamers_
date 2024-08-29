@@ -3,6 +3,12 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:roamers/models/tourist_places_model.dart';
+import 'package:roamers/widget/recommended_places.dart';
+import '../models/nearby_places_model.dart';
+import '../models/tourist_attraction_model.dart';
+import '../pages/NearbyPlaceDetailsPage.dart';
+import '../pages/tourist_details_page.dart'; // Adjust import if needed
+import 'nearby_places.dart';
 
 class DetailScreen extends StatelessWidget {
   final TouristPlacesModel place;
@@ -43,8 +49,42 @@ class DetailScreen extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   child: InkWell(
-                    onTap: () {
-                      // Handle on tap event, e.g., navigate to detail page
+                    onTap: () async {
+                      // Fetch the name from Firestore
+                      String? fetchedName = await fetchNameFromFirestore(place.name);
+
+                      if (fetchedName == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Error fetching details')),
+                        );
+                        return;
+                      }
+
+                      // Check if the name matches any in the NearbyPlaceModel list
+                      bool isNearbyPlace = nearbyPlaces.any(
+                            (place) => place.name == fetchedName,
+                      );
+
+                      if (isNearbyPlace) {
+                        // Find the matching place from the list
+                        final matchingPlace = nearbyPlaces.firstWhere(
+                              (place) => place.name == fetchedName,
+                        );
+
+                        // Navigate to NearbyPlaceDetailsPage
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NearbyPlaceDetailsPage(
+                              place: matchingPlace,
+                            ),
+                          ),
+                        );
+                      } else {
+                        // Navigate to RecommendedPlaces
+                      }
+
+                      // Show a Snackbar as well
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Tapped on $name')),
                       );
@@ -102,6 +142,25 @@ class DetailScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+// Function to fetch name from Firestore based on the provided document ID
+Future<String?> fetchNameFromFirestore(String documentId) async {
+  try {
+    DocumentSnapshot doc = await FirebaseFirestore.instance
+        .collection('tourist_places')
+        .doc(documentId)
+        .collection('details')
+        .doc('1') // Assuming a single document; adjust as necessary
+        .get();
+
+    if (doc.exists) {
+      return doc['name'] as String?;
+    }
+  } catch (e) {
+    print('Error fetching name: $e');
+  }
+  return null;
 }
 
 class Base64ImageWidget extends StatelessWidget {

@@ -6,6 +6,7 @@ import 'package:roamers/firebase_options.dart';
 import 'package:roamers/homepage/homepage.dart';
 import 'package:roamers/login/login.dart';
 import 'package:roamers/login/registration.dart';
+import 'package:roamers/pages/NearbyPlaceDetailsPage.dart';
 import 'package:roamers/pages/tourist_details_page.dart';
 import 'package:roamers/welcomePage/welcomepage.dart';
 import 'Setting/setting.dart';
@@ -13,6 +14,7 @@ import 'homepage/FavoritesPage.dart';
 import 'homepage/communitypage.dart';
 import 'homepage/favorites_provider.dart';
 import 'homepage/profile.dart';
+import 'models/nearby_places_model.dart';
 import 'models/tourist_attraction_model.dart';
 
 
@@ -44,10 +46,12 @@ void main() async {
           'tourist_details': (context) => TouristDetailsPage(
             attraction: ModalRoute.of(context)!.settings.arguments as TouristAttraction,
           ),
+          'nearby_place_details': (context) => NearbyPlaceDetailsPage(
+            place: ModalRoute.of(context)!.settings.arguments as NearbyPlaceModel,
+          ),
           'Setting': (context) => Setting(),
         },
       ),
     ),
   );
 }
-

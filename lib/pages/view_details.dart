@@ -147,3 +147,4 @@ class ViewDetailsPage extends StatelessWidget {
     );
   }
 }
+

@@ -71,4 +71,43 @@ List<NearbyPlaceModel> nearbyPlaces = [
     distance: 3.5, // Added
     images: ["assets/images/Lalbagh.jpg"],
   ),
+  NearbyPlaceModel(
+    name: "St.Martin Island",
+    duration: "02d:15h:20m",
+    rating: 4.8,
+    distance: 10.5,
+    images: ["assets/images/St.Martin Island.png", "assets/images/st.martin2.jpeg", "assets/images/st.martin3.jpeg"],
+
+  ),
+  NearbyPlaceModel(
+    name: "Nilgiri",
+    duration: "02d:15h:20m",
+    rating: 4.2,
+    distance: 9.5,
+    images: ["assets/images/Nilgiri.png", "assets/images/nilgiri2.jpg", "assets/images/nilgiri3.jpg"],
+
+  ),
+  /*NearbyPlaceModel(
+      name: "Ratargul Swamp Forest",
+      duration: "7h:20m",
+      rating: 4.5,
+      distance: 7.5,
+      images: ["assets/images/ratargul swamp forest.png", "assets/images/ratargul2.jpeg", "assets/images/ratargul3.jpeg"],
+
+  ),*/
+  NearbyPlaceModel(
+    name: "Sajek Valley",
+    duration: "01d:14h:45m",
+    rating: 4.7,
+    distance: 12.5,
+    images: ["assets/images/sajek valley.png", "assets/images/sajek2.jpeg", "assets/images/sajek3.jpeg"],
+
+  ),
+  /*NearbyPlaceModel(
+    name: "Hanging Bridge of Rangamati",
+    duration: "8hr:24min",
+    rating: 4.6,
+    distance: 311.2,
+    images: ["assets/images/Hanging Bridge of Rangamati.png", "assets/images/Hanging bridge of Rangamati2.jpg", "assets/images/hanging bridge of Rangamati3.jpg"],
+  ),*/
 ];

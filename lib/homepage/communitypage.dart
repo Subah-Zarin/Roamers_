@@ -22,14 +22,12 @@ class _CommunityPageState extends State<communitypage> {
     currentUser = _auth.currentUser;
   }
 
-  // Fetch tours from Firestore
   Stream<QuerySnapshot> fetchTours() {
     return FirebaseFirestore.instance.collection('tours').snapshots();
   }
 
-  // Show a custom SnackBar
   void showCustomSnackBar(String message, {bool isSuccess = true}) {
-    final backgroundColor = isSuccess ? Colors.green[700] : Colors.red[700];
+    final backgroundColor = isSuccess ? Colors.white : Colors.red[700];
     final textColor = Colors.white;
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -61,11 +59,10 @@ class _CommunityPageState extends State<communitypage> {
           .doc(userId)
           .collection('joined_tours');
 
-      // Check if the tour already exists in the user's joined tours
+
       final query = await joinedToursCollection.where('place', isEqualTo: tourPlace).get();
 
       if (query.docs.isEmpty) {
-        // Tour does not exist, proceed with adding
         await FirebaseFirestore.instance.collection('tours').doc(tour.id).update({
           'people': FieldValue.increment(1),
         });
@@ -78,11 +75,9 @@ class _CommunityPageState extends State<communitypage> {
 
         showCustomSnackBar('You have joined the $tourPlace tour!');
       } else {
-        // Tour already exists
         showCustomSnackBar('You have already joined the $tourPlace tour.', isSuccess: false);
       }
     } catch (e) {
-      // Handle any errors
       showCustomSnackBar('Error: Could not join tour.', isSuccess: false);
     }
   }
