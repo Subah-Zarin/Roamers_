@@ -23,7 +23,7 @@ class _ProfileState extends State<profile> {
 
   final TextStyle darkTextStyle = const TextStyle(
     color: Colors.black87,
-    fontSize: 16,
+    fontSize: 18,
   );
 
   @override
