@@ -106,7 +106,6 @@ class JoinedToursPage extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(height: 5),
-                            // Additional information can be added here if needed
                           ],
                         ),
                       ),

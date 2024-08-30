@@ -20,7 +20,7 @@ class _ProfileState extends State<profile> {
   String gender = "man";
   User? loggedInUser;
   String userName = "";
-  String age = "";
+  String age = "" ;
   String userProfileImageUrl = "";
 
   final TextEditingController _nameController = TextEditingController();
