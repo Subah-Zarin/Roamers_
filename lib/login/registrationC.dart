@@ -42,6 +42,7 @@ class RegistrationController extends GetxController {
       await _firestore.collection('users').doc(userCredential.user?.uid).set({
         'email': email.text,
         'username': username.text,
+        'password': password.text,
         // Optionally add more user details here
       });
 

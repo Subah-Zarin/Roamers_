@@ -69,4 +69,7 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation 'com.google.firebase:firebase-core:21.2.0'
+    implementation 'com.google.firebase:firebase-functions:21.2.0'
+}

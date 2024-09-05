@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'LoginController.dart';
+import 'forgotPass.dart';
 import 'registration.dart';
 import '../homepage/homepage.dart';
 
@@ -81,12 +82,17 @@ class login extends StatelessWidget {
                       child: Row(
                         children: [
                           Spacer(),
-                          Text(
-                            "Forgot Password",
-                            style: TextStyle(
-                              color: Colors.grey,
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(ForgotPasswordPage());
+                              },
+                            child: Text(
+                              "Forgot Password",
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
                             ),
-                          ),
+                          )
                         ],
                       ),
                     ),
@@ -134,43 +140,61 @@ class login extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Container(
-                          height: 50,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: Color(0xff484848),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Icon(
-                            Icons.g_mobiledata,
-                            color: Colors.white,
-                            size: 40,
-                          ),
-                        ),
-                        Container(
-                          height: 50,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: Color(0xff484848),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Icon(
-                            Icons.apple,
-                            color: Colors.white,
-                            size: 40,
+                        GestureDetector(
+                          onTap: () {
+                            // Add Google login logic here
+
+                          },
+                          child: Container(
+                            height: 50,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: Color(0xff484848),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Icon(
+                              Icons.g_mobiledata,
+                              color: Colors.white,
+                              size: 40,
+                            ),
                           ),
                         ),
-                        Container(
-                          height: 50,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: Color(0xff484848),
-                            borderRadius: BorderRadius.circular(5),
+                        GestureDetector(
+                          onTap: () {
+                            // Add Apple login logic her
+                            // c.loginWithApple();
+                          },
+                          child: Container(
+                            height: 50,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: Color(0xff484848),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Icon(
+                              Icons.apple,
+                              color: Colors.white,
+                              size: 40,
+                            ),
                           ),
-                          child: Icon(
-                            Icons.facebook,
-                            color: Colors.white,
-                            size: 40,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            // Add Facebook login logic here
+
+                          },
+                          child: Container(
+                            height: 50,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: Color(0xff484848),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Icon(
+                              Icons.facebook,
+                              color: Colors.white,
+                              size: 40,
+                            ),
                           ),
                         ),
                       ],
