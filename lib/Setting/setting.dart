@@ -113,14 +113,6 @@ class _SettingState extends State<Setting> {
                 onTap: () {},
               ),
               const SizedBox(height: 20),
-              SettingItem(
-                title: "Notifications",
-                icon: Ionicons.notifications,
-                bgColor: Colors.blue.shade100,
-                iconColor: Colors.blue,
-                onTap: () {},
-              ),
-              const SizedBox(height: 20),
               SettingSwitch(
                 title: "Dark Mode",
                 icon: Ionicons.earth,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:roamers/models/tourist_places_model.dart';
-import 'package:roamers/detail_screen.dart' as detail_screen_main; // Alias this import
 import 'package:roamers/widget/detail_screen.dart' as detail_screen_widget; // Alias this import
 
 class TouristPlaces extends StatelessWidget {

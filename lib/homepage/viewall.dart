@@ -95,14 +95,14 @@ class _ViewAllPageState extends State<ViewAllPage> {
                   ),
                   child: Row(
                     children: [
-                      tourData['images'] != null
+                      tourData['image'] != null
                           ? ClipRRect(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(15),
                           bottomLeft: Radius.circular(15),
                         ),
                         child: Image.network(
-                          tourData['images'],
+                          tourData['image'],
                           width: 120,
                           height: 120,
                           fit: BoxFit.cover,

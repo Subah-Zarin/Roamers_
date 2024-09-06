@@ -94,14 +94,14 @@ class NearbyPlaces extends StatelessWidget {
                                       fontSize: 14,
                                       color: Theme.of(context).primaryColor,
                                     ),
-                                    text: "\$22",
+                                    //text: "\$22",
                                     children: const [
                                       TextSpan(
                                         style: TextStyle(
                                           fontSize: 12,
                                           color: Colors.black54,
                                         ),
-                                        text: "/ Person",
+                                        text: " Personal/Community",
                                       ),
                                     ],
                                   ),
