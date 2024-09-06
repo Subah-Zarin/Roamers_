@@ -83,7 +83,7 @@ class _SearchAndDetailsPageState extends State<SearchAndDetailsPage> {
       ),
     );
 
-    // Check if a valid match was found
+
     if (matchingPlace.name != 'Not Found') {
       Navigator.push(
         context,
@@ -92,7 +92,7 @@ class _SearchAndDetailsPageState extends State<SearchAndDetailsPage> {
         ),
       );
     } else {
-      // Handle case where no matching place is found in nearbyPlaces
+
       print('No matching place found.');
     }
   }
