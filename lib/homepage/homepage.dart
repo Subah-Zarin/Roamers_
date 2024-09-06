@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:roamers/homepage/communitypage.dart';
+import 'package:roamers/homepage/viewall.dart';
+import 'package:roamers/homepage/viewall.dart';
 import 'package:roamers/search/search.dart';
 import 'package:roamers/widget/custom_icon_button.dart';
 import 'package:roamers/widget/location_card.dart';
@@ -82,9 +84,7 @@ class HomePage extends StatelessWidget {
               TextButton(onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => communitypage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => ViewAllPage()),
                 );
               }, child: const Text("View All"))
             ],
@@ -102,9 +102,7 @@ class HomePage extends StatelessWidget {
               TextButton(onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => communitypage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => ViewAllPage()),
                 );
               }, child: const Text("View All"))
             ],

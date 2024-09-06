@@ -103,6 +103,14 @@ List<NearbyPlaceModel> nearbyPlaces = [
     images: ["assets/images/sajek valley.png", "assets/images/sajek2.jpeg", "assets/images/sajek3.jpeg"],
 
   ),
+  NearbyPlaceModel(
+    name: "Debotakum",
+    duration: "01d:14h:45m",
+    rating: 4.2,
+    distance: 9.5,
+    images: ["assets/images/debotakhum.jpg"],
+
+  ),
   /*NearbyPlaceModel(
     name: "Hanging Bridge of Rangamati",
     duration: "8hr:24min",

@@ -92,16 +92,18 @@ class _SearchAndDetailsPageState extends State<SearchAndDetailsPage> {
         ),
       );
     } else {
-
       print('No matching place found.');
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final hasSearchQuery = _searchController.text.isNotEmpty;
+    final showSuggestions = !hasSearchQuery && _searchResults.isEmpty && _selectedPlace == null;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search and Details'),
+        title: Text('Search'),
         backgroundColor: Colors.cyan[800],
         elevation: 4,
       ),
@@ -132,14 +134,15 @@ class _SearchAndDetailsPageState extends State<SearchAndDetailsPage> {
               ),
             ),
             SizedBox(height: 16),
+            if (showSuggestions)
+              _buildSuggestions(),
             _isSearching
                 ? Center(child: CircularProgressIndicator())
                 : Expanded(
               child: ListView.builder(
                 itemCount: _searchResults.length,
                 itemBuilder: (context, index) {
-                  var placeData =
-                  _searchResults[index].data() as Map<String, dynamic>;
+                  var placeData = _searchResults[index].data() as Map<String, dynamic>;
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: InkWell(
@@ -203,6 +206,28 @@ class _SearchAndDetailsPageState extends State<SearchAndDetailsPage> {
             if (_selectedPlace != null) _buildDetails(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildSuggestions() {
+    return Container(
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.cyan[50],
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            spreadRadius: 2,
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Text(
+        'Start typing to search for places. You can find various tourist attractions here.',
+        style: TextStyle(fontSize: 16, color: Colors.cyan[800]),
       ),
     );
   }
