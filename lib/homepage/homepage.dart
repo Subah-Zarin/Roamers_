@@ -34,12 +34,12 @@ class HomePage extends StatelessWidget {
           CustomIconButton(
             icon: const Icon(Ionicons.search_outline),
             onPressed: () {
-              /*Navigator.push(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
-                  //builder: (context) => search(),
+                  builder: (context) => SearchAndDetailsPage(),
                 ),
-              );*/
+              );
             },
           ),
           Padding(

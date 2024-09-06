@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:roamers/env.dart'; // Adjusted the import statement
 import 'package:roamers/pages/direction_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
