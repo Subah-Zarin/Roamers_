@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:roamers/homepage/communitypage.dart';
-import 'package:roamers/homepage/viewall.dart';
 import 'package:roamers/homepage/viewall.dart';
 import 'package:roamers/search/search.dart';
 import 'package:roamers/widget/custom_icon_button.dart';
@@ -12,8 +10,21 @@ import 'package:roamers/widget/tourist_places.dart';
 
 import '../Setting/setting.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  //ThemeMode _themeMode = ThemeMode.system;
+
+  /*void _handleThemeChanged(bool isDarkMode) {
+    setState(() {
+      _themeMode = isDarkMode ? ThemeMode.dark : ThemeMode.light;
+    });
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -53,24 +64,22 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const Setting(),
-                  ),
+                    //builder: (context) => Setting(
+                      //onThemeChanged: _handleThemeChanged, // Pass the theme change handler
+                    ),
                 );
               },
             ),
           ),
         ],
-
       ),
-
       body: ListView(
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.all(14),
         children: [
           // LOCATION CARD
           const LocationCard(),
-          const SizedBox(
-            height: 15,
-          ),
+          const SizedBox(height: 15),
           const TouristPlaces(),
           // CATEGORIES
           const SizedBox(height: 10),
@@ -81,12 +90,15 @@ class HomePage extends StatelessWidget {
                 "Recommendation",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              TextButton(onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ViewAllPage()),
-                );
-              }, child: const Text("View All"))
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ViewAllPage()),
+                  );
+                },
+                child: const Text("View All"),
+              ),
             ],
           ),
           const SizedBox(height: 10),
@@ -99,12 +111,15 @@ class HomePage extends StatelessWidget {
                 "Most Visited Places",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              TextButton(onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ViewAllPage()),
-                );
-              }, child: const Text("View All"))
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ViewAllPage()),
+                  );
+                },
+                child: const Text("View All"),
+              ),
             ],
           ),
           const SizedBox(height: 10),
@@ -116,7 +131,7 @@ class HomePage extends StatelessWidget {
         items: [
           BottomNavigationBarItem(
             icon: IconButton(
-              icon: Icon(Ionicons.home_outline),
+              icon: const Icon(Ionicons.home_outline),
               onPressed: () {
                 Navigator.pushNamed(context, 'homepage');
               },
@@ -125,7 +140,7 @@ class HomePage extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: IconButton(
-              icon: Icon(Ionicons.heart_outline),
+              icon: const Icon(Ionicons.heart_outline),
               onPressed: () {
                 Navigator.pushNamed(context, 'FavoritesPage');
               },
@@ -134,21 +149,21 @@ class HomePage extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: IconButton(
-              icon: Icon(Ionicons.people_outline),
+              icon: const Icon(Ionicons.people_outline),
               onPressed: () {
                 Navigator.pushNamed(context, 'communitypage');
               },
             ),
-            label: "communitypage",
+            label: "Community",
           ),
           BottomNavigationBarItem(
             icon: IconButton(
-              icon: Icon(Ionicons.person_outline),
+              icon: const Icon(Ionicons.person_outline),
               onPressed: () {
                 Navigator.pushNamed(context, 'profile');
               },
             ),
-            label: "profile",
+            label: "Profile",
           ),
         ],
       ),

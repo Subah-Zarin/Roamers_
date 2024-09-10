@@ -9,6 +9,7 @@ import 'package:roamers/login/registration.dart';
 import 'package:roamers/pages/NearbyPlaceDetailsPage.dart';
 import 'package:roamers/pages/tourist_details_page.dart';
 import 'package:roamers/welcomePage/welcomepage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Setting/setting.dart';
 import 'homepage/FavoritesPage.dart';
 import 'homepage/communitypage.dart';
@@ -16,7 +17,6 @@ import 'homepage/favorites_provider.dart';
 import 'homepage/profile.dart';
 import 'models/nearby_places_model.dart';
 import 'models/tourist_attraction_model.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,30 +28,32 @@ void main() async {
 
 
   runApp(
-    MultiProvider(
+      MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
-      ],
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        initialRoute: 'welcome',
-        routes: {
-          'welcome': (context) => welcomepage(),
-          'login': (context) => login(),
-          'register': (context) => registration(),
-          'homepage': (context) => HomePage(),
-          'profile': (context) => profile(),
-          'communitypage': (context) => communitypage(),
-          'FavoritesPage': (context) => FavoritesPage(),
-          'tourist_details': (context) => TouristDetailsPage(
-            attraction: ModalRoute.of(context)!.settings.arguments as TouristAttraction,
-          ),
-          'nearby_place_details': (context) => NearbyPlaceDetailsPage(
-            place: ModalRoute.of(context)!.settings.arguments as NearbyPlaceModel,
-          ),
-          'Setting': (context) => Setting(),
-        },
+      ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+  ],
+  child: GetMaterialApp(
+  debugShowCheckedModeBanner: false,
+  initialRoute: 'welcome',
+  routes: {
+        'welcome': (context) => welcomepage(),
+        'login': (context) => login(),
+        'register': (context) => registration(),
+        'homepage': (context) => HomePage(),
+        'profile': (context) => profile(),
+        'communitypage': (context) => communitypage(),
+        'FavoritesPage': (context) => FavoritesPage(),
+        'tourist_details': (context) => TouristDetailsPage(
+          attraction: ModalRoute.of(context)!.settings.arguments as TouristAttraction,
+        ),
+        'nearby_place_details': (context) => NearbyPlaceDetailsPage(
+          place: ModalRoute.of(context)!.settings.arguments as NearbyPlaceModel,
+        ),
+        //'settings': (context) => Setting(
+         // onThemeChanged: _updateTheme,
+       // ),
+  },
+  ),
       ),
-    ),
   );
 }

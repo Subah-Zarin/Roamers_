@@ -3,12 +3,8 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:roamers/models/tourist_places_model.dart';
-import 'package:roamers/widget/recommended_places.dart';
 import '../models/nearby_places_model.dart';
-import '../models/tourist_attraction_model.dart';
 import '../pages/NearbyPlaceDetailsPage.dart';
-import '../pages/tourist_details_page.dart'; // Adjust import if needed
-import 'nearby_places.dart';
 
 class DetailScreen extends StatelessWidget {
   final TouristPlacesModel place;

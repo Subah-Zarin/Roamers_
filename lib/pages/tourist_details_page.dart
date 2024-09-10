@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ionicons/ionicons.dart';
@@ -39,6 +40,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
   Widget build(BuildContext context) {
     final provider = Provider.of<FavoritesProvider>(context);
     final size = MediaQuery.of(context).size;
+    final userId = FirebaseAuth.instance.currentUser?.uid;
 
     return Scaffold(
       body: SafeArea(
@@ -95,7 +97,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                           IconButton(
                             iconSize: 20,
                             onPressed: () {
-                              provider.toggleFavorite(widget.attraction);
+                              provider.toggleFavorite(widget.attraction,userId!);
                             },
                             icon: Icon(
                               provider.isExist(widget.attraction)

@@ -59,7 +59,8 @@ class _SettingState extends State<Setting> {
                 width: double.infinity,
                 child: Row(
                   children: [
-                    Image.asset("assets/images/avatar.jpg", width: 70, height: 70),
+                    Image.asset("assets/images/avatar.jpg",
+                        width: 70, height: 70),
                     const SizedBox(width: 20),
                     const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

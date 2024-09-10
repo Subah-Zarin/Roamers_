@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ionicons/ionicons.dart';
@@ -37,8 +38,9 @@ class _NearbyPlaceDetailsPageState extends State<NearbyPlaceDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    //final provider = Provider.of<FavoritesProvider<NearbyPlaceModel>>(context);
+    final provider = Provider.of<FavoritesProvider>(context);
     final size = MediaQuery.of(context).size;
+    final userId = FirebaseAuth.instance.currentUser?.uid;
 
     return Scaffold(
       body: SafeArea(
@@ -95,13 +97,12 @@ class _NearbyPlaceDetailsPageState extends State<NearbyPlaceDetailsPage> {
                           IconButton(
                             iconSize: 20,
                             onPressed: () {
-                              //Navigator.pushNamed(context, 'FavoritesPageNearby');;
+                              provider.toggleFavorite(widget.place,userId!);
                             },
                             icon: Icon(
-                              //provider.isExist(widget.place)
-                                  //? Icons.favorite
-                                  //: Icons.favorite_border,
-                              Icons.favorite_border,
+                              provider.isExist(widget.place)
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
                               color: Colors.red,
                               size: 22,
                             ),

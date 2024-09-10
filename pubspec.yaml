@@ -51,6 +51,7 @@ dependencies:
   url_launcher: ^6.1.7
   image_picker: ^0.8.6
   cloud_functions: ^5.1.0
+  shared_preferences: ^2.0.6
 
 
 
