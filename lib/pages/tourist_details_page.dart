@@ -218,7 +218,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ViewDetailsPage(),
+                    builder: (context) => ViewDetailsPage( placeName: widget.attraction.name,),
                   ),
                 );
               },

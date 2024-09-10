@@ -218,7 +218,7 @@ class _NearbyPlaceDetailsPageState extends State<NearbyPlaceDetailsPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ViewDetailsPage(),
+                    builder: (context) => ViewDetailsPage(placeName: widget.place.name,),
                   ),
                 );
               },
