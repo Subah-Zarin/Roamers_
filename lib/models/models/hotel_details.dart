@@ -2,23 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class hoteldetails extends StatelessWidget {
   const hoteldetails({super.key});
 
-  Future<void> _launchWhatsApp() async {
-    final String phoneNumber = '+8801531973027'; // Ensure this is the correct number
-    final String message = 'Hello! I\'m interested in booking a room.';
-    final String whatsappUrl = 'https://wa.me/$phoneNumber?text=${Uri.encodeComponent(message)}';
-
-    final Uri url = Uri.parse(whatsappUrl);
+  // This method is defined inside the HotelDetails class
+  Future<void> _launchLink(String link) async {
+    final Uri url = Uri.parse(link);
 
     try {
-      if (await canLaunchUrl(url)) {
-        await launchUrl(url);
-      } else {
-        // Provide an appropriate error message
-        throw 'Could not launch WhatsApp.';
+      // Use this to explicitly open the URL in an external browser
+      if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+        throw 'Could not launch the link.';
       }
     } catch (e) {
       print(e);
@@ -119,7 +115,10 @@ class hoteldetails extends StatelessWidget {
                             ),
                             const SizedBox(height: 10),
                             ElevatedButton(
-                              onPressed: _launchWhatsApp,
+                              onPressed: () {
+                                // Pass the hotel's 'link' field to the _launchLink function
+                                _launchLink(hotel['link']);
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.lightBlueAccent,
                                 shape: RoundedRectangleBorder(
