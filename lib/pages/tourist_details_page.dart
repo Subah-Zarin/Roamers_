@@ -9,6 +9,8 @@ import 'package:roamers/models/tourist_attraction_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../homepage/favorites_provider.dart';
 import 'direction_model.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TouristDetailsPage extends StatefulWidget {
   final TouristAttraction attraction;
@@ -34,6 +36,67 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
   void dispose() {
     _googleMapController?.dispose();
     super.dispose();
+  }
+
+  Future<void> _rateAttraction() async {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+    if (userId == null) return;
+
+    double? rating;
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Rate this attraction'),
+          content: RatingBar.builder(
+            initialRating: 0,
+            minRating: 1,
+            itemSize: 40,
+            direction: Axis.horizontal,
+            allowHalfRating: false,
+            itemBuilder: (context, _) => const Icon(
+              Icons.star,
+              color: Colors.amber,
+            ),
+            onRatingUpdate: (value) {
+              rating = value;
+            },
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                if (rating != null) {
+                  _submitRating(userId, rating!);
+                }
+              },
+              child: const Text('Submit'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _submitRating(String userId, double rating) async {
+    try {
+      await FirebaseFirestore.instance.collection('users').doc(userId).collection('ratings').doc(widget.attraction.name).set({
+        'rating': rating,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Rating submitted successfully!')),
+      );
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to submit rating.')),
+      );
+    }
   }
 
   @override
@@ -97,7 +160,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                           IconButton(
                             iconSize: 20,
                             onPressed: () {
-                              provider.toggleFavorite(widget.attraction,userId!);
+                              provider.toggleFavorite(widget.attraction, userId!);
                             },
                             icon: Icon(
                               provider.isExist(widget.attraction)
@@ -158,7 +221,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                     onPressed: () {
                       // Handle chat or communication action if needed
                     },
-                    iconSize: 20,
+                    iconSize: 27,
                     icon: const Icon(Ionicons.chatbubble_ellipses_outline),
                   ),
                 ),
@@ -169,10 +232,13 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                       widget.attraction.rating.toString(),
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
-                    Icon(
-                      Ionicons.star,
-                      color: Colors.yellow[800],
-                      size: 15,
+                    IconButton(
+                      icon: Icon(
+                        Ionicons.star,
+                        color: Colors.yellow[800],
+                        size: 25,
+                      ),
+                      onPressed: _rateAttraction,
                     ),
                   ],
                 ),
@@ -218,7 +284,7 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ViewDetailsPage( placeName: widget.attraction.name,),
+                    builder: (context) => ViewDetailsPage(placeName: widget.attraction.name),
                   ),
                 );
               },

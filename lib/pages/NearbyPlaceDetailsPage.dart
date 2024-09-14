@@ -6,9 +6,11 @@ import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 import 'package:roamers/pages/view_details.dart';
 import 'package:roamers/widget/distance.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../homepage/favorites_provider.dart';
 import '../models/nearby_places_model.dart';
 import 'direction_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class NearbyPlaceDetailsPage extends StatefulWidget {
   final NearbyPlaceModel place;
@@ -34,6 +36,67 @@ class _NearbyPlaceDetailsPageState extends State<NearbyPlaceDetailsPage> {
   void dispose() {
     _googleMapController?.dispose();
     super.dispose();
+  }
+
+  Future<void> _ratePlace() async {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+    if (userId == null) return;
+
+    double? rating;
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Rate this place'),
+          content: RatingBar.builder(
+            initialRating: 0,
+            minRating: 1,
+            itemSize: 40,
+            direction: Axis.horizontal,
+            allowHalfRating: false,
+            itemBuilder: (context, _) => const Icon(
+              Icons.star,
+              color: Colors.amber,
+            ),
+            onRatingUpdate: (value) {
+              rating = value;
+            },
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                if (rating != null) {
+                  _submitRating(userId, rating!);
+                }
+              },
+              child: const Text('Submit'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _submitRating(String userId, double rating) async {
+    try {
+      await FirebaseFirestore.instance.collection('users').doc(userId).collection('ratings').doc(widget.place.name).set({
+        'rating': rating,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Rating submitted successfully!')),
+      );
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to submit rating.')),
+      );
+    }
   }
 
   @override
@@ -97,7 +160,7 @@ class _NearbyPlaceDetailsPageState extends State<NearbyPlaceDetailsPage> {
                           IconButton(
                             iconSize: 20,
                             onPressed: () {
-                              provider.toggleFavorite(widget.place,userId!);
+                              provider.toggleFavorite(widget.place, userId!);
                             },
                             icon: Icon(
                               provider.isExist(widget.place)
@@ -158,7 +221,7 @@ class _NearbyPlaceDetailsPageState extends State<NearbyPlaceDetailsPage> {
                     onPressed: () {
                       // Handle chat or communication action if needed
                     },
-                    iconSize: 20,
+                    iconSize: 27,
                     icon: const Icon(Ionicons.chatbubble_ellipses_outline),
                   ),
                 ),
@@ -169,10 +232,13 @@ class _NearbyPlaceDetailsPageState extends State<NearbyPlaceDetailsPage> {
                       widget.place.rating.toString(),
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
-                    Icon(
-                      Ionicons.star,
-                      color: Colors.yellow[800],
-                      size: 15,
+                    IconButton(
+                      icon: Icon(
+                        Ionicons.star,
+                        color: Colors.yellow[800],
+                        size: 25,
+                      ),
+                      onPressed: _ratePlace,
                     ),
                   ],
                 ),
@@ -218,7 +284,7 @@ class _NearbyPlaceDetailsPageState extends State<NearbyPlaceDetailsPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ViewDetailsPage(placeName: widget.place.name,),
+                    builder: (context) => ViewDetailsPage(placeName: widget.place.name),
                   ),
                 );
               },
