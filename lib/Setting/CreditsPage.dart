@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 
-
-class Detailspage extends StatefulWidget {
-  const Detailspage({super.key});
+class CreditsPage extends StatefulWidget {
+  const CreditsPage({super.key});
 
   @override
-  _DetailsPageState createState() => _DetailsPageState();
+  _CreditsPageState createState() => _CreditsPageState();
 }
 
-class _DetailsPageState extends State<Detailspage> {
+class _CreditsPageState extends State<CreditsPage> {
   @override
   Widget build(BuildContext context) {
-    print("build called: DetailsPage is being built.");
+    print("build called: CreditsPage is being built.");
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Details Page"),
+        title: const Text("Credits Page"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -22,7 +21,7 @@ class _DetailsPageState extends State<Detailspage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             Text(
-              "Our Purpose",
+              "Credits",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -30,28 +29,24 @@ class _DetailsPageState extends State<Detailspage> {
             ),
             SizedBox(height: 20),
             Text(
-              "Some details about the app:",
+              "This app was built with the contributions of the following:",
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(height: 10),
             Text(
-              "- Trip Planning and Organization.",
+              "- Developer: John Doe",
               style: TextStyle(fontSize: 16),
             ),
             Text(
-              "-Discover Destinations.",
+              "- Designer: Jane Smith",
               style: TextStyle(fontSize: 16),
             ),
             Text(
-              "-Real-Time Updates.",
+              "- Project Manager: Alex Johnson",
               style: TextStyle(fontSize: 16),
             ),
             Text(
-              "-Personalized Recommendations.",
-              style: TextStyle(fontSize: 16),
-            ),
-            Text(
-              "- Travel Budgeting and Cost Management.",
+              "- Special Thanks: Flutter Community",
               style: TextStyle(fontSize: 16),
             ),
           ],

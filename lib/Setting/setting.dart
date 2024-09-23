@@ -5,6 +5,7 @@ import 'package:roamers/Setting/setting_switch.dart';
 import 'package:roamers/homepage/profile.dart';
 import '../homepage/homepage.dart';
 import 'DetailsPage.dart';
+import 'CreditsPage.dart';
 import 'forward_button.dart';
 
 class Setting extends StatefulWidget {
