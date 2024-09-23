@@ -45,28 +45,16 @@ class DetailScreen extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   child: InkWell(
-                    onTap: () async {
-                      // Fetch the name from Firestore
-                      String? fetchedName = await fetchNameFromFirestore(place.name);
-
-                      if (fetchedName == null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Error fetching details')),
-                        );
-                        return;
-                      }
+                    onTap: () {
+                      // Use the name from the tapped item directly
+                      final String tappedName = name;
 
                       // Check if the name matches any in the NearbyPlaceModel list
-                      bool isNearbyPlace = nearbyPlaces.any(
-                            (place) => place.name == fetchedName,
+                      final matchingPlace = nearbyPlaces.firstWhere(
+                            (place) => place.name == tappedName,
                       );
 
-                      if (isNearbyPlace) {
-                        // Find the matching place from the list
-                        final matchingPlace = nearbyPlaces.firstWhere(
-                              (place) => place.name == fetchedName,
-                        );
-
+                      if (matchingPlace != null) {
                         // Navigate to NearbyPlaceDetailsPage
                         Navigator.push(
                           context,
@@ -77,12 +65,15 @@ class DetailScreen extends StatelessWidget {
                           ),
                         );
                       } else {
-                        // Navigate to RecommendedPlaces
+                        // Handle the case where the place is not found
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('No nearby place found for $tappedName')),
+                        );
                       }
 
                       // Show a Snackbar as well
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Tapped on $name')),
+                        SnackBar(content: Text('Tapped on $tappedName')),
                       );
                     },
                     borderRadius: BorderRadius.circular(15),
@@ -138,25 +129,6 @@ class DetailScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-// Function to fetch name from Firestore based on the provided document ID
-Future<String?> fetchNameFromFirestore(String documentId) async {
-  try {
-    DocumentSnapshot doc = await FirebaseFirestore.instance
-        .collection('tourist_places')
-        .doc(documentId)
-        .collection('details')
-        .doc('1') // Assuming a single document; adjust as necessary
-        .get();
-
-    if (doc.exists) {
-      return doc['name'] as String?;
-    }
-  } catch (e) {
-    print('Error fetching name: $e');
-  }
-  return null;
 }
 
 class Base64ImageWidget extends StatelessWidget {
