@@ -4,8 +4,9 @@ import 'package:roamers/Setting/setting_item.dart';
 import 'package:roamers/Setting/setting_switch.dart';
 import 'package:roamers/homepage/profile.dart';
 import '../homepage/homepage.dart';
-import 'DetailsPage.dart';
 import 'CreditsPage.dart';
+import 'DetailsPage.dart';
+
 import 'forward_button.dart';
 
 class Setting extends StatefulWidget {
@@ -136,7 +137,7 @@ class _SettingState extends State<Setting> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const CreditsPage(),
+                      builder: (context) => const Creditspage(),
                     ),
                   );
                 },

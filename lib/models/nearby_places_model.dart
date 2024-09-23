@@ -55,7 +55,7 @@ List<NearbyPlaceModel> nearbyPlaces = [
     duration: "01d:14h:45m",
     rating: 4.2,
     distance: 9.5,
-    images: ["assets/images/debotakhum.jpg"],
+    images: ["assets/images/cox.jpeg"],
 
   ),
   NearbyPlaceModel(
