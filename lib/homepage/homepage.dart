@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(
                     builder: (context) => const Setting(),
                     //builder: (context) => Setting(
-                      //onThemeChanged: _handleThemeChanged, // Pass the theme change handler
+                      //onThemeChanged: _handleThemeChanged,
                     ),
                 );
               },

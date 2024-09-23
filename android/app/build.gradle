@@ -70,4 +70,6 @@ flutter {
 }
 
 dependencies {
+    implementation 'com.facebook.android:facebook-login:15.0.0'
+
 }

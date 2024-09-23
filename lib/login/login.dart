@@ -9,6 +9,9 @@ import '../homepage/homepage.dart';
 class login extends StatelessWidget {
   final LoginController c = Get.put(LoginController());
 
+  // Add a boolean to manage password visibility
+  bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +60,7 @@ class login extends StatelessWidget {
                         controller: c.email,
                         decoration: InputDecoration(
                           hintText: 'Email Address',
-                          label: Text('Email Address'),
+                          labelText: 'Email Address',
                           fillColor: Color(0xffD8D8DD),
                           filled: true,
                         ),
@@ -65,18 +68,26 @@ class login extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.all(20.0),
-                      child: TextField(
+                      child: Obx(() => TextField(
                         controller: c.password,
-                        obscureText: true,
+                        obscureText: c.obscureText.value,
                         decoration: InputDecoration(
                           hintText: 'Password',
-                          label: Text('Password'),
-                          suffixIcon: Icon(Icons.visibility_off),
+                          labelText: 'Password',
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              c.obscureText.value ? Icons.visibility_off : Icons.visibility,
+                            ),
+                            onPressed: () {
+                              c.obscureText.value = !c.obscureText.value; // Toggle the visibility
+                            },
+                          ),
                           fillColor: Color(0xffD8D8DD),
                           filled: true,
                         ),
-                      ),
+                      )),
                     ),
+
                     Padding(
                       padding: EdgeInsets.only(left: 19, top: 8, right: 19),
                       child: Row(
@@ -85,14 +96,14 @@ class login extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               Get.to(ForgotPasswordPage());
-                              },
+                            },
                             child: Text(
                               "Forgot Password",
                               style: TextStyle(
                                 color: Colors.grey,
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -142,8 +153,7 @@ class login extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            // Add Google login logic here
-
+                            c.loginWithGoogle();
                           },
                           child: Container(
                             height: 50,
@@ -161,8 +171,7 @@ class login extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            // Add Apple login logic her
-                            // c.loginWithApple();
+                            c.loginWithApple();
                           },
                           child: Container(
                             height: 50,
@@ -180,8 +189,7 @@ class login extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            // Add Facebook login logic here
-
+                            c.loginWithFacebook();
                           },
                           child: Container(
                             height: 50,

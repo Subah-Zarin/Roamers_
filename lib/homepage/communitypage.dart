@@ -26,7 +26,7 @@ class _CommunityPageState extends State<communitypage> {
   }
 
   void showCustomSnackBar(String message, {bool isSuccess = true}) {
-    final backgroundColor = isSuccess ? Colors.white : Colors.red[700];
+    final backgroundColor = isSuccess ? Colors.blueAccent : Colors.red[700];
     final textColor = Colors.white;
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -36,13 +36,13 @@ class _CommunityPageState extends State<communitypage> {
           style: TextStyle(color: textColor),
         ),
         backgroundColor: backgroundColor,
-        behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-        duration: const Duration(seconds: 3),
+        behavior: SnackBarBehavior.floating,  // Set floating behavior to allow margin
+        duration: const Duration(seconds: 5),  // Increased duration for testing
       ),
     );
   }
@@ -58,7 +58,6 @@ class _CommunityPageState extends State<communitypage> {
           .doc(userId)
           .collection('joined_tours');
 
-
       final query = await joinedToursCollection.where('place', isEqualTo: tourPlace).get();
 
       if (query.docs.isEmpty) {
@@ -72,9 +71,10 @@ class _CommunityPageState extends State<communitypage> {
           'date': tour['date'],
         });
 
-        showCustomSnackBar('You have joined the $tourPlace tour!');
+        // Displaying success message
+        showCustomSnackBar('You have joined the ${tourPlace} tour!', isSuccess: true);
       } else {
-        showCustomSnackBar('You have already joined the $tourPlace tour.', isSuccess: false);
+        showCustomSnackBar('You have already joined the ${tourPlace} tour.', isSuccess: false);
       }
     } catch (e) {
       showCustomSnackBar('Error: Could not join tour.', isSuccess: false);

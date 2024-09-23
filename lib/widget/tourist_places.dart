@@ -8,7 +8,7 @@ class TouristPlaces extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40,
+      height: 40, // Ensure this height doesn't cause overflow
       child: ListView.separated(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -35,8 +35,7 @@ class TouristPlaces extends StatelessWidget {
             ),
           );
         },
-        separatorBuilder: (context, index) =>
-        const Padding(padding: EdgeInsets.only(right: 10)),
+        separatorBuilder: (context, index) => const Padding(padding: EdgeInsets.only(right: 10)),
         itemCount: touristPlaces.length,
       ),
     );

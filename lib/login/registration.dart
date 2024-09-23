@@ -74,31 +74,46 @@ class registration extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.all(20.0),
-                      child: TextField(
+                      child: Obx(() => TextField(
                         controller: c.password,
-                        obscureText: true,
+                        obscureText: !c.isPasswordVisible.value,
                         decoration: InputDecoration(
                           hintText: 'Password',
                           labelText: 'Password',
-                          suffixIcon: Icon(Icons.visibility_off),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              c.isPasswordVisible.value ? Icons.visibility : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              c.isPasswordVisible.value = !c.isPasswordVisible.value;
+                            },
+                          ),
                           fillColor: Color(0xffD8D8DD),
                           filled: true,
                         ),
-                      ),
+                      )),
                     ),
+
                     Padding(
                       padding: EdgeInsets.all(20.0),
-                      child: TextField(
+                      child: Obx(() => TextField(
                         controller: c.confirmPassword,
-                        obscureText: true,
+                        obscureText: !c.isConfirmPasswordVisible.value,
                         decoration: InputDecoration(
                           hintText: 'Confirm Password',
                           labelText: 'Confirm Password',
-                          suffixIcon: Icon(Icons.visibility_off),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              c.isConfirmPasswordVisible.value ? Icons.visibility : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              c.isConfirmPasswordVisible.value = !c.isConfirmPasswordVisible.value;
+                            },
+                          ),
                           fillColor: Color(0xffD8D8DD),
                           filled: true,
                         ),
-                      ),
+                      )),
                     ),
 
                     SizedBox(height: 20),
@@ -144,8 +159,7 @@ class registration extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            // Add Google login logic here
-                           // c.loginWithGoogle();
+                            c.registerWithGoogle();
                           },
                           child: Container(
                             height: 50,
@@ -163,8 +177,7 @@ class registration extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            // Add Apple login logic here
-                            //c.loginWithApple();
+                            c.registerWithApple();
                           },
                           child: Container(
                             height: 50,
@@ -182,8 +195,7 @@ class registration extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            // Add Facebook login logic here
-                            //c.loginWithFacebook();
+                            c.registerWithFacebook();
                           },
                           child: Container(
                             height: 50,
