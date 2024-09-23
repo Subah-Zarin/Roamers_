@@ -23,27 +23,33 @@ class _CreditsPageState extends State<Creditspage> {
             Text(
               "Credits",
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 40,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 25),
             Text(
               "This app was built with the contributions of the following:",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 20),
             ),
             SizedBox(height: 10),
             Text(
-              "- Developer: John Doe",
-              style: TextStyle(fontSize: 16),
+              "- Developer: Quazi Zarin Subah"
+                  "            "
+                  "Roll : 20220204079",
+              style: TextStyle(fontSize: 20),
             ),
             Text(
-              "- Designer: Jane Smith",
-              style: TextStyle(fontSize: 16),
+              "- Designer: Arpa Adhikary Tathai"
+                  "            "
+                  "Roll : 20220204094",
+              style: TextStyle(fontSize: 20),
             ),
             Text(
-              "- Project Manager: Alex Johnson",
-              style: TextStyle(fontSize: 16),
+              "- Project Manager: Zarin Tasnim"
+                  "            "
+                  "Roll : 20220204096",
+              style: TextStyle(fontSize: 20),
             ),
             Text(
               "- Special Thanks: Flutter Community",
