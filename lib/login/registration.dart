@@ -134,7 +134,7 @@ class registration extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 15),
-                    Padding(
+                    /*Padding(
                       padding: const EdgeInsets.only(left: 18.0, right: 18),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -212,7 +212,7 @@ class registration extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ),
+                    ),*/
                     Padding(
                       padding: const EdgeInsets.only(left: 100.0, top: 25),
                       child: Row(

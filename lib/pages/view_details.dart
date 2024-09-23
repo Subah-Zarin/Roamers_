@@ -121,7 +121,7 @@ class _ViewDetailsPageState extends State<ViewDetailsPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
                       details['description'],
-                      style: Theme.of(context).textTheme.headlineSmall,
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),
                   const SizedBox(height: 20),
