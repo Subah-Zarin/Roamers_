@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
 // A simple home page where you can navigate to the DetailsPage
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
