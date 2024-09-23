@@ -24,35 +24,35 @@ class _DetailsPageState extends State<Detailspage> {
             Text(
               "Our Purpose",
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 40,
                 fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(height: 20),
             Text(
               "Some details about the app:",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 20),
             ),
             SizedBox(height: 10),
             Text(
-              "- Trip Planning and Organization.",
-              style: TextStyle(fontSize: 16),
+              "  - Trip Planning and Organization.",
+              style: TextStyle(fontSize: 20),
             ),
             Text(
-              "-Discover Destinations.",
-              style: TextStyle(fontSize: 16),
+              "  - Discover Destinations.",
+              style: TextStyle(fontSize: 20),
             ),
             Text(
-              "-Real-Time Updates.",
-              style: TextStyle(fontSize: 16),
+              "  - Real-Time Updates.",
+              style: TextStyle(fontSize: 20),
             ),
             Text(
-              "-Personalized Recommendations.",
-              style: TextStyle(fontSize: 16),
+              "  - Personalized Recommendations.",
+              style: TextStyle(fontSize: 20),
             ),
             Text(
-              "- Travel Budgeting and Cost Management.",
-              style: TextStyle(fontSize: 16),
+              "  - Travel Budgeting and Cost Management.",
+              style: TextStyle(fontSize: 20),
             ),
           ],
         ),
