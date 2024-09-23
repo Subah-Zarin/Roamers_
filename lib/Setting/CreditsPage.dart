@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CreditsPage extends StatefulWidget {
-  const CreditsPage({super.key});
+class Creditspage extends StatefulWidget {
+  const Creditspage({super.key});
 
   @override
   _CreditsPageState createState() => _CreditsPageState();
 }
 
-class _CreditsPageState extends State<CreditsPage> {
+class _CreditsPageState extends State<Creditspage> {
   @override
   Widget build(BuildContext context) {
     print("build called: CreditsPage is being built.");
