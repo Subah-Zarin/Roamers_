@@ -16,6 +16,7 @@ class Setting extends StatefulWidget {
 
 class _SettingState extends State<Setting> {
   bool isDarkMode = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,38 +107,78 @@ class _SettingState extends State<Setting> {
               ),
               const SizedBox(height: 20),
               SettingItem(
-                title: "Language",
-                icon: Ionicons.earth,
-                bgColor: Colors.orange.shade100,
-                iconColor: Colors.orange,
-                value: "English",
-                onTap: () {},
+                title: "Details",
+                icon: Ionicons.desktop_outline,
+                bgColor: Colors.blueGrey.shade50,
+                iconColor: Colors.lightBlueAccent,
+                value: "Purpose",
+                onTap: () {
+                  // Navigate to the Details page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DetailsPage(),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 20),
-              SettingSwitch(
-                title: "Dark Mode",
-                icon: Ionicons.earth,
-                bgColor: Colors.purple.shade100,
-                iconColor: Colors.purple,
-                value: isDarkMode,
-                onTap: (value) {
-                  setState(() {
-                    isDarkMode = value;
-                  });
+              SettingItem(
+                title: "Credits",
+                icon: Ionicons.albums_outline,
+                bgColor: Colors.blueGrey.shade50,
+                iconColor: Colors.lightBlueAccent,
+                value: "About us",
+                onTap: () {
+                  // Navigate to the Credits page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CreditsPage(),
+                    ),
+                  );
                 },
               ),
               const SizedBox(height: 20),
               SettingItem(
                 title: "Help",
                 icon: Ionicons.nuclear,
-                bgColor: Colors.red.shade100,
-                iconColor: Colors.red,
-                onTap: () {},
+                bgColor: Colors.blueGrey.shade50,
+                iconColor: Colors.lightBlueAccent,
+                onTap: () {
+                  // Implement Help functionality here
+                },
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+// Placeholder for DetailsPage
+class DetailsPage extends StatelessWidget {
+  const DetailsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Details")),
+      body: const Center(child: Text("Details Page")),
+    );
+  }
+}
+
+// Placeholder for CreditsPage
+class CreditsPage extends StatelessWidget {
+  const CreditsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Credits")),
+      body: const Center(child: Text("Credits Page")),
     );
   }
 }

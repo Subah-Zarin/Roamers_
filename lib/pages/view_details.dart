@@ -105,7 +105,7 @@ class _ViewDetailsPageState extends State<ViewDetailsPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
                       widget.placeName,
-                      style: Theme.of(context).textTheme.headline5?.copyWith(fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -113,7 +113,7 @@ class _ViewDetailsPageState extends State<ViewDetailsPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
                       "Per person: ${details['price']} BDT",
-                      style: Theme.of(context).textTheme.subtitle1?.copyWith(color: Colors.orange),
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.orange),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -121,7 +121,7 @@ class _ViewDetailsPageState extends State<ViewDetailsPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
                       details['description'],
-                      style: Theme.of(context).textTheme.bodyText2,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                   ),
                   const SizedBox(height: 20),
