@@ -1,66 +1,14 @@
 import 'package:flutter/material.dart';
 
-// The main entry point of the app
-void main() {
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: const HomePage(), // Starting page
-    );
-  }
-}
-
-
-// A simple home page where you can navigate to the DetailsPage
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Home Page"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Navigate to DetailsPage
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const DetailsPage(),
-              ),
-            );
-          },
-          child: const Text("Go to Details Page"),
-        ),
-      ),
-    );
-  }
-}
-
-// Your DetailsPage with print statements
-class DetailsPage extends StatefulWidget {
-  const DetailsPage({super.key});
+class Detailspage extends StatefulWidget {
+  const Detailspage({super.key});
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
 }
 
-class _DetailsPageState extends State<DetailsPage> {
-  @override
-  void initState() {
-    super.initState();
-    print("initState called: DetailsPage has been initialized.");
-  }
-
+class _DetailsPageState extends State<Detailspage> {
   @override
   Widget build(BuildContext context) {
     print("build called: DetailsPage is being built.");
@@ -102,11 +50,5 @@ class _DetailsPageState extends State<DetailsPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    print("dispose called: DetailsPage is being removed.");
-    super.dispose();
   }
 }
