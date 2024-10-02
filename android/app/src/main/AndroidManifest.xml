@@ -8,9 +8,6 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" /> <1377820729865780>
 
         <activity
             android:name=".MainActivity"

@@ -48,7 +48,7 @@ List<NearbyPlaceModel> nearbyPlaces = [
     duration: "3 hours", // Added
     rating: 4.8, // Added
     distance: 7.5, // Added
-    images: ["assets/images/coxbazar.jpeg"], // Modified
+    images: ["assets/images/bogalake.jpg"], // Modified
   ),
   NearbyPlaceModel(
     name: "Cox's Bazar",

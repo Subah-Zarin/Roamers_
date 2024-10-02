@@ -76,7 +76,6 @@ class _ProfileState extends State<profile> {
             .child('userProfiles/$userId/profile.jpg');
         final uploadTask = storageRef.putFile(imageFile);
 
-        // Show upload progress
         uploadTask.snapshotEvents.listen((taskSnapshot) {
           double progress =
               (taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100;

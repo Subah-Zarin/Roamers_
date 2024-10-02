@@ -3,6 +3,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:roamers/Setting/setting_item.dart';
 import 'package:roamers/Setting/setting_switch.dart';
 import 'package:roamers/homepage/profile.dart';
+import '../Chat/chat.dart';
 import '../homepage/homepage.dart';
 import 'CreditsPage.dart';
 import 'DetailsPage.dart';
@@ -149,8 +150,13 @@ class _SettingState extends State<Setting> {
                 bgColor: Colors.blueGrey.shade50,
                 iconColor: Colors.lightBlueAccent,
                 onTap: () {
-                  // Implement Help functionality here
-                },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>ChatPage(),
+                    ),
+                  );
+                }
               ),
             ],
           ),

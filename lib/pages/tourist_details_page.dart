@@ -7,6 +7,7 @@ import 'package:roamers/pages/view_details.dart';
 import 'package:roamers/widget/distance.dart';
 import 'package:roamers/models/tourist_attraction_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../Chat/chat.dart';
 import '../homepage/favorites_provider.dart';
 import 'direction_model.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -219,7 +220,12 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                   padding: const EdgeInsets.only(right: 4),
                   child: IconButton(
                     onPressed: () {
-                      // Handle chat or communication action if needed
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ChatPage(),
+                        ),
+                      );
                     },
                     iconSize: 27,
                     icon: const Icon(Ionicons.chatbubble_ellipses_outline),

@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+
 
 import '../homepage/homepage.dart';
 
@@ -80,61 +80,6 @@ class LoginController extends GetxController {
     }
   }
 
-  // Google Sign-In
-  Future<void> loginWithGoogle() async {
-    try {
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) {
-        // Sign-in aborted
-        return;
-      }
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-      await _auth.signInWithCredential(credential);
-      Get.snackbar('Success', 'Google login successful', snackPosition: SnackPosition.TOP);
-      Get.to(HomePage());
-    } catch (e) {
-      Get.snackbar('Error', 'Google login failed: $e', snackPosition: SnackPosition.TOP);
-    }
-  }
-
-  // Facebook Sign-In
-  Future<void> loginWithFacebook() async {
-    try {
-      final LoginResult result = await FacebookAuth.instance.login();
-      if (result.status == LoginStatus.success) {
-        final AuthCredential credential = FacebookAuthProvider.credential(result.accessToken!.token);
-        await _auth.signInWithCredential(credential);
-        Get.snackbar('Success', 'Facebook login successful', snackPosition: SnackPosition.TOP);
-        Get.to(HomePage());
-      } else {
-        Get.snackbar('Error', 'Facebook login failed', snackPosition: SnackPosition.TOP);
-      }
-    } catch (e) {
-      Get.snackbar('Error', 'Facebook login failed: $e', snackPosition: SnackPosition.TOP);
-    }
-  }
-
-  // Apple Sign-In
-  Future<void> loginWithApple() async {
-    try {
-      final AuthorizationCredentialAppleID appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [AppleIDAuthorizationScopes.email, AppleIDAuthorizationScopes.fullName],
-      );
-      final AuthCredential credential = OAuthProvider('apple.com').credential(
-        idToken: appleCredential.identityToken,
-        accessToken: appleCredential.authorizationCode,
-      );
-      await _auth.signInWithCredential(credential);
-      Get.snackbar('Success', 'Apple login successful', snackPosition: SnackPosition.TOP);
-      Get.to(HomePage());
-    } catch (e) {
-      Get.snackbar('Error', 'Apple login failed: $e', snackPosition: SnackPosition.TOP);
-    }
-  }
 
   @override
   void onClose() {

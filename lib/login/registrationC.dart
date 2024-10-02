@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart'; // For Google sign-in
-import 'package:sign_in_with_apple/sign_in_with_apple.dart'; // For Apple sign-in
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart'; // For Facebook sign-in
 
 class RegistrationController extends GetxController {
   final TextEditingController email = TextEditingController();
@@ -103,66 +101,9 @@ class RegistrationController extends GetxController {
     }
   }
 
-  // Method to register a user with Apple
-  Future<void> registerWithApple() async {
-    try {
-      final credential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-      );
 
-      final OAuthCredential appleCredential = OAuthProvider("apple.com").credential(
-        idToken: credential.identityToken,
-        accessToken: credential.authorizationCode,
-      );
 
-      // Sign in to Firebase with the Apple credential
-      UserCredential userCredential = await _auth.signInWithCredential(appleCredential);
 
-      // Store user details in Firestore
-      await _firestore.collection('users').doc(userCredential.user?.uid).set({
-        'email': credential.email ?? '',
-        'username': credential.givenName ?? '',
-      });
-
-      Get.snackbar('Success', 'Signed in with Apple', snackPosition: SnackPosition.TOP);
-      Get.toNamed('homepage'); // Navigate to homepage after successful login
-    } catch (e) {
-      print('Error during Apple sign-in: $e');
-      Get.snackbar('Error', 'Failed to sign in with Apple: $e', snackPosition: SnackPosition.TOP);
-    }
-  }
-
-  // Method to register a user with Facebook
-  Future<void> registerWithFacebook() async {
-    try {
-      final LoginResult result = await FacebookAuth.instance.login();
-
-      if (result.status == LoginStatus.success) {
-        final OAuthCredential facebookCredential =
-        FacebookAuthProvider.credential(result.accessToken!.token);
-
-        // Sign in to Firebase with the Facebook credential
-        UserCredential userCredential = await _auth.signInWithCredential(facebookCredential);
-
-        // Store user details in Firestore
-        await _firestore.collection('users').doc(userCredential.user?.uid).set({
-          'email': userCredential.user?.email ?? '',
-          'username': userCredential.user?.displayName ?? '',
-        });
-
-        Get.snackbar('Success', 'Signed in with Facebook', snackPosition: SnackPosition.TOP);
-        Get.toNamed('homepage'); // Navigate to homepage after successful login
-      } else {
-        Get.snackbar('Error', 'Failed to sign in with Facebook', snackPosition: SnackPosition.TOP);
-      }
-    } catch (e) {
-      print('Error during Facebook sign-in: $e');
-      Get.snackbar('Error', 'Failed to sign in with Facebook: $e', snackPosition: SnackPosition.TOP);
-    }
-  }
 
   @override
   void onClose() {
